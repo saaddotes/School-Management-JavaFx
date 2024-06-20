@@ -47,7 +47,7 @@
                                         </VBox>
                                         <AnchorPane prefHeight="73.0" prefWidth="99.0">
                                             <children>
-                                                <Text layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1500" textAlignment="CENTER" wrappingWidth="102.9271240234375">
+                                                <Text fx:id="totalStudents" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1500" textAlignment="CENTER" wrappingWidth="102.9271240234375">
                                                     <font>
                                                         <Font size="23.0" />
                                                     </font>
@@ -76,7 +76,7 @@
                                         </VBox>
                                         <AnchorPane prefHeight="73.0" prefWidth="99.0">
                                             <children>
-                                                <Text layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="30" textAlignment="CENTER" wrappingWidth="102.9271240234375">
+                                                <Text fx:id="totalTeachers" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="30" textAlignment="CENTER" wrappingWidth="102.9271240234375">
                                                     <font>
                                                         <Font size="23.0" />
                                                     </font>
@@ -105,7 +105,7 @@
                                         </VBox>
                                         <AnchorPane prefHeight="73.0" prefWidth="99.0">
                                             <children>
-                                                <Text layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rs 2300" textAlignment="CENTER" wrappingWidth="102.9271240234375">
+                                                <Text fx:id="totalIncome" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rs 2300" textAlignment="CENTER" wrappingWidth="102.9271240234375">
                                                     <font>
                                                         <Font size="23.0" />
                                                     </font>
@@ -177,7 +177,7 @@
                                                                         </VBox>
                                                                         <VBox>
                                                                             <children>
-                                                                                <TextField fx:id="dobField" prefWidth="200.0" promptText="Date Of Birth" />
+                                                                                <TextField fx:id="dobField" disable="true" prefWidth="200.0" promptText="Date Of Birth" />
                                                                             </children>
                                                                         </VBox>
                                                                     </children>
@@ -289,13 +289,14 @@
                                                             <columns>
                                                                 <TableColumn fx:id="rollNumberColumn" prefWidth="81.33331298828125" text="Roll Number" />
                                                                 <TableColumn fx:id="studentNameColumn" prefWidth="114.66665649414062" text="Name" />
-                                                <TableColumn fx:id="fatherNameColumn" prefWidth="81.33331298828125" text="Father Name" />
-                                                                <TableColumn fx:id="studentGenderColumn" prefWidth="50.666748046875" text="Gender" />
-                                                                <TableColumn fx:id="studentClassColumn" prefWidth="65.99993896484375" text="Class" />
-                                                                <TableColumn fx:id="studentSectionColumn" prefWidth="62.6666259765625" text="Section" />
-                                                                <TableColumn fx:id="studentEmailColumn" prefWidth="90.66668701171875" text="Email Address" />
+                                                <TableColumn fx:id="fatherNameColumn" prefWidth="88.00001525878906" text="Father Name" />
+                                                                <TableColumn fx:id="studentGenderColumn" prefWidth="44.66668701171875" text="Gender" />
+                                                                <TableColumn fx:id="studentClassColumn" prefWidth="60.000030517578125" text="Class" />
+                                                                <TableColumn fx:id="studentSectionColumn" prefWidth="54.66668701171875" text="Section" />
+                                                                <TableColumn fx:id="studentEmailColumn" prefWidth="105.33334350585938" text="Email Address" />
                                                                 <TableColumn fx:id="studentPhoneColumn" prefWidth="82.66668701171875" text="Phone" />
-                                                                <TableColumn fx:id="studentAction" prefWidth="75.0" text="Action" />
+                                                                <TableColumn fx:id="studentFeesColumn" prefWidth="75.0" text="Fees" />
+                                                <TableColumn fx:id="studentFeesStatusColumn" prefWidth="75.0" text="Status" />
                                                             </columns>
                                                         </TableView>
                                                     </children>

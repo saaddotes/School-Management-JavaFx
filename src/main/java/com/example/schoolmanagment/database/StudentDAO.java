@@ -11,7 +11,7 @@ import java.util.List;
 
 public class StudentDAO {
     public void addStudent(Student student) {
-        String query = "INSERT INTO students (rollNumber, name, fatherName,dob, gender, classLevel, section, email, phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)";
+        String query = "INSERT INTO students (rollNumber, name, fatherName,dob, gender, classLevel, section, email, phone,totalFees, feesStatus) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?,?)";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setInt(1, student.getRollNumber());
@@ -23,6 +23,10 @@ public class StudentDAO {
             pstmt.setString(7, student.getSection());
             pstmt.setString(8, student.getEmail());
             pstmt.setString(9, student.getPhone());
+            pstmt.setInt(10, student.getTotalFees());
+            pstmt.setBoolean(11, student.isFeesStatus());
+
+
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -45,7 +49,9 @@ public class StudentDAO {
                         rs.getString("section"),
                         rs.getString("email"),
                         rs.getString("phone"),
-                        rs.getInt("rollNumber")
+                        rs.getInt("rollNumber"),
+                        rs.getInt("totalFees"),
+                        rs.getBoolean("feesStatus")
                 );
                 students.add(student);
             }

@@ -61,6 +61,8 @@ public class Controller {
     private TextField phoneField;
     @FXML
     private TextField idField;
+
+
     @FXML
     private Text warningText;
 
@@ -85,6 +87,11 @@ public class Controller {
     private TableColumn<Student, String> studentEmailColumn;
     @FXML
     private TableColumn<Student, String> studentPhoneColumn;
+
+    @FXML
+    private TableColumn<Student, Integer> studentFeesColumn;
+    @FXML
+    private TableColumn<Student, Boolean> studentFeesStatusColumn;
 
     @FXML
     private TextField studentNameField;
@@ -158,7 +165,7 @@ public class Controller {
         sectionColumn.setCellValueFactory(new PropertyValueFactory<>("section"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
         phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
-        actionColumn.setCellValueFactory(new PropertyValueFactory<>("action"));
+//        actionColumn.setCellValueFactory(new PropertyValueFactory<>("action"));
 
         // Initialize student list
         studentList = FXCollections.observableArrayList();
@@ -173,6 +180,8 @@ public class Controller {
         studentSectionColumn.setCellValueFactory(new PropertyValueFactory<>("section"));
         studentEmailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
         studentPhoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        studentFeesColumn.setCellValueFactory(new PropertyValueFactory<>("totalFees"));
+        studentFeesStatusColumn.setCellValueFactory(new PropertyValueFactory<>("feesStatus"));
 
         tableView.setItems(teacherList);
         studentTableView.setItems(studentList);
@@ -199,7 +208,6 @@ public class Controller {
     private void addTeacher() {
         String name = nameField.getText();
         String subject = subjectField.getText();
-        String dob = dobField.getText();
         String gender = genderMenu.getText();
         String classLevel = classMenu.getText();
         String section = sectionMenu.getText();
@@ -207,7 +215,7 @@ public class Controller {
         String phone = phoneField.getText();
         String id = idField.getText();
 
-        if (name.isEmpty() || subject.isEmpty() || dob.isEmpty() || gender.equals("Gender")
+        if (name.isEmpty() || subject.isEmpty() || gender.equals("Gender")
                 || classLevel.equals("Class") || section.equals("Section") || email.isEmpty()
                 || phone.isEmpty() || id.isEmpty()) {
             warningText.setVisible(true);
@@ -309,6 +317,8 @@ public class Controller {
         String email = studentEmailField.getText();
         String phone = studentPhoneField.getText();
         String rollNumber = studentRollField.getText();
+        int totalFees = 3000;
+        boolean feesStatus = false;
 
         if (studentname.isEmpty() || fatherName.isEmpty() || dob.isEmpty() || gender.equals("Gender")
                 || classLevel.equals("Class") || section.equals("Section") || email.isEmpty()
@@ -325,8 +335,11 @@ public class Controller {
                     section,
                     email,
                     phone,
-                    Integer.parseInt(rollNumber)
+                    Integer.parseInt(rollNumber),
+                    totalFees,
+                    feesStatus
             );
+
 
             // Save to database
             studentDAO.addStudent(newStudent);

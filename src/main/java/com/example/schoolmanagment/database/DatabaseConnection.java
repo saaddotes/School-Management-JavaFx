@@ -44,7 +44,9 @@ public class DatabaseConnection {
                 + " section text NOT NULL,\n"
                 + " email text NOT NULL,\n"
                 + " phone text NOT NULL,\n"
-                + " rollNumber integer NOT NULL\n"
+                + " rollNumber integer NOT NULL,\n"
+                + "totalFees integer NOT NULL,\n"
+                + "feesStatus bool NOT NULL\n"
                 + ");";
 
         String sqlTeachers = "CREATE TABLE IF NOT EXISTS teachers (\n"
@@ -57,6 +59,7 @@ public class DatabaseConnection {
                 + " email text NOT NULL,\n"
                 + " phone text NOT NULL\n"
                 + ");";
+
 
         try (Statement stmt = conn.createStatement()) {
             stmt.execute(sqlStudents);

@@ -1,5 +1,6 @@
 package com.example.schoolmanagment.models;
 
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
@@ -13,8 +14,10 @@ public class Student {
     private final SimpleStringProperty email;
     private final SimpleStringProperty phone;
     private final SimpleIntegerProperty rollNumber;
+    private final SimpleIntegerProperty totalFees;
+    private final SimpleBooleanProperty feesStatus;
 
-    public Student(String name, String father, String dob, String gender, String classLevel, String section, String email, String phone, int rollNumber) {
+    public Student(String name, String father, String dob, String gender, String classLevel, String section, String email, String phone, int rollNumber, int totalFees, boolean feesStatus) {
         this.name = new SimpleStringProperty(name);
         this.father = new SimpleStringProperty(father);
         this.dob = new SimpleStringProperty(dob);
@@ -24,6 +27,8 @@ public class Student {
         this.email = new SimpleStringProperty(email);
         this.phone = new SimpleStringProperty(phone);
         this.rollNumber = new SimpleIntegerProperty(rollNumber);
+        this.totalFees = new SimpleIntegerProperty(totalFees);
+        this.feesStatus = new SimpleBooleanProperty(feesStatus);
     }
 
     public int getRollNumber() {
@@ -100,5 +105,21 @@ public class Student {
 
     public String getFatherName() {
         return father.get();
+    }
+
+    public int getTotalFees() {
+        return totalFees.get();
+    }
+
+    public SimpleIntegerProperty totalFeesProperty() {
+        return totalFees;
+    }
+
+    public boolean isFeesStatus() {
+        return feesStatus.get();
+    }
+
+    public SimpleBooleanProperty feesStatusProperty() {
+        return feesStatus;
     }
 }
