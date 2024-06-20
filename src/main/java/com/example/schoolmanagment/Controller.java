@@ -8,12 +8,10 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 
-import java.util.Random;
 
 public class Controller {
     @FXML
@@ -103,8 +101,6 @@ public class Controller {
     @FXML
     private TextField studentPhoneField;
     @FXML
-    private TextField rollNumberField;
-    @FXML
     private Text studentWarningText;
 
     private ObservableList<Student> studentList;
@@ -190,7 +186,7 @@ public class Controller {
                     "DOb" + i ,
                     "male",
                     "Class 3",
-                    "Subject " + i,
+                    "A",
                     "A",
                     "teacher" + i + "@school.com",
                     1234
@@ -300,7 +296,7 @@ public class Controller {
         studentSectionMenu.setText("Section");
         studentEmailField.clear();
         studentPhoneField.clear();
-        rollNumberField.clear();
+        studentRollField.clear();
         studentWarningText.setVisible(false);
     }
 
@@ -318,7 +314,7 @@ public class Controller {
 
         if (studentname.isEmpty() || fatherName.isEmpty() || dob.isEmpty() || gender.equals("Gender")
                 || classLevel.equals("Class") || section.equals("Section") || email.isEmpty()
-                || phone.isEmpty() || rollNumber.isEmpty()) {
+                || phone.isEmpty() || rollNumber.isEmpty() ) {
             studentWarningText.setVisible(true);
         } else {
             studentWarningText.setVisible(false);
