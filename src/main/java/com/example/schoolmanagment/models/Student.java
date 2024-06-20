@@ -1,4 +1,4 @@
-package com.example.schoolmanagment;
+package com.example.schoolmanagment.models;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -14,7 +14,7 @@ public class Student {
     private final SimpleStringProperty phone;
     private final SimpleIntegerProperty rollNumber;
 
-    public Student(String name, String father, String dob, String gender, String classLevel, String section, String email, String phone,  int rollNumber) {
+    public Student(String name, String father, String dob, String gender, String classLevel, String section, String email, String phone, int rollNumber) {
         this.name = new SimpleStringProperty(name);
         this.father = new SimpleStringProperty(father);
         this.dob = new SimpleStringProperty(dob);
@@ -33,7 +33,6 @@ public class Student {
     public String getName() {
         return name.get();
     }
-
 
     public String getDob() {
         return dob.get();
@@ -63,7 +62,43 @@ public class Student {
         return father.get();
     }
 
+    public SimpleStringProperty nameProperty() {
+        return name;
+    }
+
     public SimpleStringProperty fatherProperty() {
         return father;
+    }
+
+    public SimpleStringProperty dobProperty() {
+        return dob;
+    }
+
+    public SimpleStringProperty genderProperty() {
+        return gender;
+    }
+
+    public SimpleStringProperty classLevelProperty() {
+        return classLevel;
+    }
+
+    public SimpleStringProperty sectionProperty() {
+        return section;
+    }
+
+    public SimpleStringProperty emailProperty() {
+        return email;
+    }
+
+    public SimpleStringProperty phoneProperty() {
+        return phone;
+    }
+
+    public SimpleIntegerProperty rollNumberProperty() {
+        return rollNumber;
+    }
+
+    public String getFatherName() {
+        return father.get();
     }
 }

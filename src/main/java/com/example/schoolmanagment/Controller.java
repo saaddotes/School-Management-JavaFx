@@ -1,17 +1,20 @@
 package com.example.schoolmanagment;
 
+import com.example.schoolmanagment.database.StudentDAO;
+import com.example.schoolmanagment.database.TeacherDAO;
+import com.example.schoolmanagment.models.Student;
+import com.example.schoolmanagment.models.Teacher;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
-
 
 public class Controller {
     @FXML
@@ -63,7 +66,6 @@ public class Controller {
 
     private ObservableList<Teacher> teacherList;
 
-
     // Student fields
     @FXML
     private TableView<Student> studentTableView;
@@ -105,10 +107,17 @@ public class Controller {
 
     private ObservableList<Student> studentList;
 
+    private StudentDAO studentDAO;
+    private TeacherDAO teacherDAO;
+
     // Method to initialize the controller
     @FXML
     public void initialize() {
-        // Set up the axes
+        // Initialize DAOs
+        studentDAO = new StudentDAO();
+        teacherDAO = new TeacherDAO();
+
+        // Set up the axes for the BarChart
         CategoryAxis xAxis = (CategoryAxis) barChart.getXAxis();
         NumberAxis yAxis = (NumberAxis) barChart.getYAxis();
 
@@ -136,10 +145,11 @@ public class Controller {
         // Add the series to the BarChart
         barChart.getData().add(series);
 
-
+        // Initialize teacher list
         teacherList = FXCollections.observableArrayList();
+        loadTeachersFromDatabase();
 
-        // Set up the columns in the table
+        // Set up the columns in the teacher table
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         genderColumn.setCellValueFactory(new PropertyValueFactory<>("gender"));
@@ -150,53 +160,39 @@ public class Controller {
         phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
         actionColumn.setCellValueFactory(new PropertyValueFactory<>("action"));
 
-        // Add 30 teachers initially
-        for (int i = 1; i <= 10; i++) {
-            teacherList.add(new Teacher(
-                    i,
-                    "Teacher " + i,
-                    i % 2 == 0 ? "Male" : "Female",
-                    "Subject " + i,
-                    i % 10 + 1,
-                    "A",
-                    "teacher" + i + "@school.com",
-                    "1234567890"
-            ));
-        }
-
-        tableView.setItems(teacherList);
-
+        // Initialize student list
         studentList = FXCollections.observableArrayList();
+        loadStudentsFromDatabase();
 
         // Set up the columns in the student table
         rollNumberColumn.setCellValueFactory(new PropertyValueFactory<>("rollNumber"));
         studentNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        fatherNameColumn.setCellValueFactory(new PropertyValueFactory<>("father"));
         studentGenderColumn.setCellValueFactory(new PropertyValueFactory<>("gender"));
         studentClassColumn.setCellValueFactory(new PropertyValueFactory<>("classLevel"));
         studentSectionColumn.setCellValueFactory(new PropertyValueFactory<>("section"));
         studentEmailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
         studentPhoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
 
-        // Add initial students if needed
-
-        for (int i = 1; i <= 10; i++) {
-            studentList.add(new Student(
-                    "Student" + 1,
-                    "Student " + i,
-                    "DOb" + i ,
-                    "male",
-                    "Class 3",
-                    "A",
-                    "A",
-                    "teacher" + i + "@school.com",
-                    1234
-            ));
-        }
-
+        tableView.setItems(teacherList);
         studentTableView.setItems(studentList);
     }
 
+    private void loadTeachersFromDatabase() {
+        // Clear the current list
+        teacherList.clear();
 
+        // Load data from the database
+        teacherList.addAll(teacherDAO.getAllTeachers());
+    }
+
+    private void loadStudentsFromDatabase() {
+        // Clear the current list
+        studentList.clear();
+
+        // Load data from the database
+        studentList.addAll(studentDAO.getAllStudents());
+    }
 
 
     @FXML
@@ -210,7 +206,6 @@ public class Controller {
         String email = emailField.getText();
         String phone = phoneField.getText();
         String id = idField.getText();
-
 
         if (name.isEmpty() || subject.isEmpty() || dob.isEmpty() || gender.equals("Gender")
                 || classLevel.equals("Class") || section.equals("Section") || email.isEmpty()
@@ -228,12 +223,16 @@ public class Controller {
                     email,
                     phone
             );
+
+            // Save to database
+            teacherDAO.addTeacher(newTeacher);
+
+            // Add to observable list
             teacherList.add(newTeacher);
             tableView.setItems(teacherList);
             clearFields();
         }
     }
-
 
     @FXML
     private void clearFields() {
@@ -266,7 +265,6 @@ public class Controller {
         MenuItem menuItem = (MenuItem) event.getSource();
         sectionMenu.setText(menuItem.getText());
     }
-
 
     @FXML
     private void setStudentGender(ActionEvent event) {
@@ -314,7 +312,7 @@ public class Controller {
 
         if (studentname.isEmpty() || fatherName.isEmpty() || dob.isEmpty() || gender.equals("Gender")
                 || classLevel.equals("Class") || section.equals("Section") || email.isEmpty()
-                || phone.isEmpty() || rollNumber.isEmpty() ) {
+                || phone.isEmpty() || rollNumber.isEmpty()) {
             studentWarningText.setVisible(true);
         } else {
             studentWarningText.setVisible(false);
@@ -329,16 +327,14 @@ public class Controller {
                     phone,
                     Integer.parseInt(rollNumber)
             );
+
+            // Save to database
+            studentDAO.addStudent(newStudent);
+
+            // Add to observable list
             studentList.add(newStudent);
             studentTableView.setItems(studentList);
             clearStudentFields();
         }
     }
 }
-
-
-
-
-
-
-

@@ -1,4 +1,4 @@
-package com.example.schoolmanagment;
+package com.example.schoolmanagment.models;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -54,5 +54,37 @@ public class Teacher {
 
     public String getPhone() {
         return phone.get();
+    }
+
+    public SimpleIntegerProperty idProperty() {
+        return id;
+    }
+
+    public SimpleStringProperty nameProperty() {
+        return name;
+    }
+
+    public SimpleStringProperty genderProperty() {
+        return gender;
+    }
+
+    public SimpleStringProperty subjectProperty() {
+        return subject;
+    }
+
+    public SimpleIntegerProperty classLevelProperty() {
+        return classLevel;
+    }
+
+    public SimpleStringProperty sectionProperty() {
+        return section;
+    }
+
+    public SimpleStringProperty emailProperty() {
+        return email;
+    }
+
+    public SimpleStringProperty phoneProperty() {
+        return phone;
     }
 }

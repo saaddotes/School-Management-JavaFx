@@ -289,6 +289,7 @@
                                                             <columns>
                                                                 <TableColumn fx:id="rollNumberColumn" prefWidth="81.33331298828125" text="Roll Number" />
                                                                 <TableColumn fx:id="studentNameColumn" prefWidth="114.66665649414062" text="Name" />
+                                                <TableColumn fx:id="fatherNameColumn" prefWidth="81.33331298828125" text="Father Name" />
                                                                 <TableColumn fx:id="studentGenderColumn" prefWidth="50.666748046875" text="Gender" />
                                                                 <TableColumn fx:id="studentClassColumn" prefWidth="65.99993896484375" text="Class" />
                                                                 <TableColumn fx:id="studentSectionColumn" prefWidth="62.6666259765625" text="Section" />
@@ -391,7 +392,7 @@
                                                                                 <Font />
                                                                             </font>
                                                                         </Button>
-                                                                        <Button onAction="#addStudent" contentDisplay="RIGHT" mnemonicParsing="false" style="-fx-background-color: #68c151;" text="Save">
+                                                                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#addStudent" style="-fx-background-color: #68c151;" text="Save">
                                                                             <font>
                                                                                 <Font />
                                                                             </font>
