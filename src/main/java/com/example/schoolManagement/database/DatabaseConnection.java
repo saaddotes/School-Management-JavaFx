@@ -1,4 +1,4 @@
-package com.example.schoolmanagment.database;
+package com.example.schoolManagement.database;
 
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
@@ -55,7 +55,6 @@ public class DatabaseConnection {
                 + " gender text NOT NULL,\n"
                 + " subject text NOT NULL,\n"
                 + " classLevel integer NOT NULL,\n"
-                + " section text NOT NULL,\n"
                 + " email text NOT NULL,\n"
                 + " phone text NOT NULL\n"
                 + ");";

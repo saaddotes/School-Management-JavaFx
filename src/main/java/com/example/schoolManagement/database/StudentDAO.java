@@ -1,6 +1,6 @@
-package com.example.schoolmanagment.database;
+package com.example.schoolManagement.database;
 
-import com.example.schoolmanagment.models.Student;
+import com.example.schoolManagement.models.Student;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +14,7 @@ public class StudentDAO {
         String query = "INSERT INTO students (rollNumber, name, fatherName,dob, gender, classLevel, section, email, phone,totalFees, feesStatus) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?,?)";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
-            pstmt.setInt(1, student.getRollNumber());
+            pstmt.setString(1, student.getRollNumber());
             pstmt.setString(2, student.getName());
             pstmt.setString(3, student.getFatherName());
             pstmt.setString(4, student.getDob());
@@ -24,7 +24,7 @@ public class StudentDAO {
             pstmt.setString(8, student.getEmail());
             pstmt.setString(9, student.getPhone());
             pstmt.setInt(10, student.getTotalFees());
-            pstmt.setBoolean(11, student.isFeesStatus());
+            pstmt.setString(11, student.isFeesStatus());
 
 
             pstmt.executeUpdate();
@@ -49,9 +49,9 @@ public class StudentDAO {
                         rs.getString("section"),
                         rs.getString("email"),
                         rs.getString("phone"),
-                        rs.getInt("rollNumber"),
+                        rs.getString("rollNumber"),
                         rs.getInt("totalFees"),
-                        rs.getBoolean("feesStatus")
+                        rs.getString("feesStatus")
                 );
                 students.add(student);
             }
@@ -60,4 +60,33 @@ public class StudentDAO {
         }
         return students;
     }
+
+    public int getTotalStudents() {
+        String query = "SELECT COUNT(*) AS total FROM students";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query);
+             ResultSet rs = pstmt.executeQuery()) {
+            if (rs.next()) {
+                return rs.getInt("total");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public int getTotalTeachers() {
+        String query = "SELECT COUNT(*) AS total FROM teachers";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query);
+             ResultSet rs = pstmt.executeQuery()) {
+            if (rs.next()) {
+                return rs.getInt("total");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
 }

@@ -1,0 +1,68 @@
+.root {
+    -fx-font-family: "Arial";
+    -fx-font-size: 14px;
+    -fx-background-color: #343a40;
+    -fx-text-fill: #ffffff;
+}
+
+/* Button styles */
+.button {
+    -fx-background-color: #28a745;
+    -fx-text-fill: white;
+    -fx-background-radius: 5;
+    -fx-padding: 10 20;
+}
+
+.button:hover {
+    -fx-background-color: #218838;
+}
+
+/* Text field styles */
+.text-field {
+    -fx-background-color: #495057;
+    -fx-border-color: #ced4da;
+    -fx-border-radius: 5;
+    -fx-padding: 10;
+    -fx-text-fill: #ffffff;
+}
+
+/* Label styles */
+.label {
+    -fx-text-fill: #adb5bd;
+}
+
+/* Tab styles */
+.tab-pane .tab-header-area {
+    -fx-background-color: #495057;
+}
+
+.tab-pane .tab {
+    -fx-background-color: #343a40;
+    -fx-text-fill: #adb5bd;
+    -fx-padding: 10 15;
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: #28a745;
+    -fx-text-fill: white;
+}
+
+.tab-pane .tab:hover {
+    -fx-background-color: #218838;
+    -fx-text-fill: white;
+}
+
+/* Table styles */
+.table-view {
+    -fx-border-color: #495057;
+}
+
+.table-view .column-header {
+    -fx-background-color: #6c757d;
+    -fx-text-fill: #adb5bd;
+}
+
+.table-view .cell {
+    -fx-background-color: #343a40;
+    -fx-text-fill: #adb5bd;
+}

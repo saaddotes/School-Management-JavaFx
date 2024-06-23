@@ -5,6 +5,7 @@
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.Tab?>
@@ -12,6 +13,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -20,9 +22,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="400.0" maxWidth="800.0" minHeight="400.0" minWidth="800.0" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.schoolmanagment.Controller">
+<AnchorPane maxHeight="450.0" maxWidth="975.0" minHeight="450.0" minWidth="975.0" prefHeight="450.0" prefWidth="975.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.schoolManagement.Controller">
     <children>
-        <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" tabMaxWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <TabPane maxWidth="975.0" minWidth="975.0" prefHeight="400.0" prefWidth="975.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="400.0" tabMaxWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <tabs>
                 <Tab text="Dashboard">
                     <content>
@@ -47,11 +49,7 @@
                                         </VBox>
                                         <AnchorPane prefHeight="73.0" prefWidth="99.0">
                                             <children>
-                                                <Text fx:id="totalStudents" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1500" textAlignment="CENTER" wrappingWidth="102.9271240234375">
-                                                    <font>
-                                                        <Font size="23.0" />
-                                                    </font>
-                                                </Text>
+                                                <Label fx:id="totalStudents" />
                                             </children>
                                         </AnchorPane>
                                     </children>
@@ -76,11 +74,7 @@
                                         </VBox>
                                         <AnchorPane prefHeight="73.0" prefWidth="99.0">
                                             <children>
-                                                <Text fx:id="totalTeachers" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="30" textAlignment="CENTER" wrappingWidth="102.9271240234375">
-                                                    <font>
-                                                        <Font size="23.0" />
-                                                    </font>
-                                                </Text>
+                                                <Label fx:id="totalTeachers" />
                                             </children>
                                         </AnchorPane>
                                     </children>
@@ -137,21 +131,26 @@
                                     <tabs>
                                         <Tab text="All Teachers">
                                             <content>
-                                                <AnchorPane maxHeight="400.0" maxWidth="800.0" minHeight="400.0" minWidth="800.0" prefHeight="400.0" prefWidth="800.0">
+                                                <AnchorPane maxHeight="400.0" maxWidth="899.0" minHeight="400.0" minWidth="900.0" prefHeight="400.0" prefWidth="900.0">
                                                     <children>
-                                                        <TableView fx:id="tableView" layoutX="0.0" layoutY="0.0" maxHeight="400.0" maxWidth="800.0" minHeight="400.0" minWidth="800.0" prefHeight="400.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                        <TableView fx:id="tableView" layoutX="0.0" layoutY="0.0" maxHeight="400.0" maxWidth="721.0" minHeight="400.0" minWidth="700.0" prefHeight="400.0" prefWidth="721.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="214.0" AnchorPane.topAnchor="0.0">
                                                             <columns>
                                                                 <TableColumn fx:id="idColumn" prefWidth="67.0" text="ID" />
-                                                                <TableColumn fx:id="nameColumn" prefWidth="72.0" text="Name" />
-                                                                <TableColumn fx:id="genderColumn" prefWidth="58.0" text="Gender" />
-                                                                <TableColumn fx:id="subjectColumn" prefWidth="48.6666259765625" text="Subject" />
-                                                                <TableColumn fx:id="classColumn" prefWidth="68.0" text="Class" />
-                                                                <TableColumn fx:id="actionColumn" prefWidth="81.33331298828125" text="Action" />
-                                                                <TableColumn fx:id="sectionColumn" prefWidth="83.33331298828125" text="Section" />
-                                                                <TableColumn fx:id="emailColumn" maxWidth="50.0" prefWidth="235.3333740234375" text="Email Address" />
-                                                                <TableColumn fx:id="phoneColumn" prefWidth="47.3333740234375" text="Phone" />
+                                                                <TableColumn fx:id="nameColumn" prefWidth="127.99999237060547" text="Name" />
+                                                                <TableColumn fx:id="genderColumn" prefWidth="55.99998474121094" text="Gender" />
+                                                                <TableColumn fx:id="subjectColumn" minWidth="0.0" prefWidth="95.33334350585938" text="Subject" />
+                                                                <TableColumn fx:id="classColumn" minWidth="5.33331298828125" prefWidth="70.66668701171875" text="Classes" />
+                                                                <TableColumn fx:id="emailColumn" maxWidth="128.66668701171875" prefWidth="125.3333740234375" text="Email Address" />
+                                                                <TableColumn fx:id="phoneColumn" prefWidth="139.33331298828125" text="Phone" />
                                                             </columns>
                                                         </TableView>
+                                          <VBox alignment="CENTER" layoutX="685.0" layoutY="-1.0" prefHeight="335.0" prefWidth="214.0" spacing="10.0" style="-fx-background-color: #eee;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="685.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <Button fx:id="moreInfoBtn" disable="true" mnemonicParsing="false" prefHeight="31.0" prefWidth="132.0" text="More Info" onAction="#handleMoreInfo" />
+                                                <Button  disable="true" mnemonicParsing="false" prefHeight="31.0" prefWidth="133.0" text=" Edit Info" />
+                                                <Button fx:id="teacherDeleteBtn" disable="true" mnemonicParsing="false" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: red;" text="Delete" onAction="#handleTeacherDelete"/>
+                                             </children>
+                                          </VBox>
                                                     </children>
                                                 </AnchorPane>
                                             </content>
@@ -160,92 +159,65 @@
                                             <content>
                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="600.0">
                                                     <children>
-                                                        <VBox prefHeight="400.0" prefWidth="600.0" spacing="10.0">
+                                                        <VBox prefHeight="400.0" prefWidth="975.0" spacing="10.0">
                                                             <children>
                                                                 <Text fx:id="warningText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="*Please Complete All Fields" visible="false" />
-                                                                <HBox spacing="10.0">
+                                                                <HBox alignment="TOP_CENTER" spacing="10.0">
                                                                     <children>
-                                                                        <VBox>
-                                                                            <children>
-                                                                                <TextField fx:id="nameField" prefWidth="200.0" promptText="Name" />
-                                                                            </children>
-                                                                        </VBox>
-                                                                        <VBox>
-                                                                            <children>
-                                                                                <TextField fx:id="subjectField" prefWidth="200.0" promptText="Subject" />
-                                                                            </children>
-                                                                        </VBox>
-                                                                        <VBox>
-                                                                            <children>
-                                                                                <TextField fx:id="dobField" disable="true" prefWidth="200.0" promptText="Date Of Birth" />
-                                                                            </children>
-                                                                        </VBox>
-                                                                    </children>
-                                                                </HBox>
-                                                                <HBox spacing="10.0">
-                                                                    <children>
-                                                                        <VBox>
-                                                                            <children>
-                                                                                <SplitMenuButton fx:id="genderMenu" mnemonicParsing="false" prefWidth="200.0" text="Gender">
-                                                                                    <items>
-                                                                                        <MenuItem onAction="#setGender" text="Male" />
-                                                                                        <MenuItem onAction="#setGender" text="Female" />
-                                                                                    </items>
-                                                                                </SplitMenuButton>
-                                                                            </children>
-                                                                        </VBox>
-                                                                        <VBox>
-                                                                            <children>
-                                                                                <SplitMenuButton fx:id="classMenu" mnemonicParsing="false" prefWidth="200.0" text="Class">
-                                                                                    <items>
-                                                                                        <MenuItem onAction="#setClass" text="1" />
-                                                                                        <MenuItem onAction="#setClass" text="2" />
-                                                                                        <MenuItem onAction="#setClass" text="3" />
-                                                                                        <MenuItem onAction="#setClass" text="4" />
-                                                                                        <MenuItem onAction="#setClass" text="5" />
-                                                                                        <MenuItem onAction="#setClass" text="6" />
-                                                                                        <MenuItem onAction="#setClass" text="7" />
-                                                                                        <MenuItem onAction="#setClass" text="8" />
-                                                                                        <MenuItem onAction="#setClass" text="9" />
-                                                                                        <MenuItem onAction="#setClass" text="10" />
-                                                                                    </items>
-                                                                                </SplitMenuButton>
-                                                                            </children>
-                                                                        </VBox>
-                                                                        <VBox>
-                                                                            <children>
-                                                                                <SplitMenuButton fx:id="sectionMenu" mnemonicParsing="false" prefWidth="200.0" text="Section">
-                                                                                    <items>
-                                                                                        <MenuItem onAction="#setSection" text="A" />
-                                                                                        <MenuItem onAction="#setSection" text="B" />
-                                                                                        <MenuItem onAction="#setSection" text="C" />
-                                                                                        <MenuItem onAction="#setSection" text="D" />
-                                                                                    </items>
-                                                                                </SplitMenuButton>
-                                                                            </children>
-                                                                        </VBox>
-                                                                    </children>
-                                                                </HBox>
-                                                                <HBox spacing="10.0">
-                                                                    <children>
-                                                                        <VBox>
-                                                                            <children>
-                                                                                <TextField fx:id="emailField" prefWidth="200.0" promptText="Email Address" />
-                                                                            </children>
-                                                                        </VBox>
-                                                                        <VBox>
-                                                                            <children>
-                                                                                <TextField fx:id="phoneField" prefWidth="200.0" promptText="Phone Number" />
-                                                                            </children>
-                                                                        </VBox>
                                                                         <VBox>
                                                                             <children>
                                                                                 <TextField fx:id="idField" prefWidth="200.0" promptText="ID Number" />
                                                                             </children>
                                                                         </VBox>
+                                                                        <VBox>
+                                                                            <children>
+                                                                                <TextField fx:id="nameField" prefWidth="200.0" promptText="Name" />
+                                                                            </children>
+                                                                        </VBox>
+                                                                        <VBox />
+                                                                          <SplitMenuButton fx:id="genderMenu" mnemonicParsing="false" prefWidth="200.0" text="Gender">
+                                                                              <items>
+                                                                                  <MenuItem onAction="#setGender" text="Male" />
+                                                                                  <MenuItem onAction="#setGender" text="Female" />
+                                                                              </items>
+                                                                          </SplitMenuButton>
                                                                     </children>
                                                                 </HBox>
-                                                                <HBox alignment="TOP_RIGHT" spacing="10.0">
+                                                                <HBox alignment="TOP_CENTER" spacing="10.0">
+                                                                    <children>
+                                                                        <VBox />
+                                                                        <VBox />
+                                                                        <VBox />
+                                                                          <TextField fx:id="subjectField" prefHeight="25.0" prefWidth="198.0" promptText="Subject" />
+                                                                          <SplitMenuButton fx:id="classMenu" mnemonicParsing="false" prefWidth="200.0" text="Class">
+                                                                              <items>
+                                                                                  <MenuItem onAction="#setClass" text="1" />
+                                                                                  <MenuItem onAction="#setClass" text="2" />
+                                                                                  <MenuItem onAction="#setClass" text="3" />
+                                                                                  <MenuItem onAction="#setClass" text="4" />
+                                                                                  <MenuItem onAction="#setClass" text="5" />
+                                                                                  <MenuItem onAction="#setClass" text="6" />
+                                                                                  <MenuItem onAction="#setClass" text="7" />
+                                                                                  <MenuItem onAction="#setClass" text="8" />
+                                                                                  <MenuItem onAction="#setClass" text="9" />
+                                                                                  <MenuItem onAction="#setClass" text="10" />
+                                                                              </items>
+                                                                          </SplitMenuButton>
+                                                                    </children>
+                                                                </HBox>
+                                                                <HBox alignment="TOP_CENTER" spacing="10.0">
+                                                                    <children>
+                                                                        <VBox />
+                                                                        <VBox>
+                                                                            <children>
+                                                                                <TextField fx:id="emailField" prefWidth="200.0" promptText="Email Address" />
+                                                                            </children>
+                                                                        </VBox>
+                                                                        <VBox />
+                                                                          <TextField fx:id="phoneField" prefWidth="200.0" promptText="Phone Number" />
+                                                                    </children>
+                                                                </HBox>
+                                                                <HBox alignment="TOP_CENTER" spacing="10.0">
                                                                     <children>
                                                                         <Button mnemonicParsing="false" onAction="#clearFields" style="-fx-background-color: #aaa;" text="Reset">
                                                                             <font>
@@ -285,7 +257,7 @@
                                             <content>
                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                     <children>
-                                                        <TableView fx:id="studentTableView" layoutX="-1.0" layoutY="-1.0" prefHeight="283.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                        <TableView fx:id="studentTableView" layoutX="471.3333333333333" layoutY="-1.0" maxHeight="400.0" maxWidth="889.0" minHeight="392.0" minWidth="700.0" prefHeight="392.0" prefWidth="797.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="178.0" AnchorPane.topAnchor="0.0">
                                                             <columns>
                                                                 <TableColumn fx:id="rollNumberColumn" prefWidth="81.33331298828125" text="Roll Number" />
                                                                 <TableColumn fx:id="studentNameColumn" prefWidth="114.66665649414062" text="Name" />
@@ -296,9 +268,22 @@
                                                                 <TableColumn fx:id="studentEmailColumn" prefWidth="105.33334350585938" text="Email Address" />
                                                                 <TableColumn fx:id="studentPhoneColumn" prefWidth="82.66668701171875" text="Phone" />
                                                                 <TableColumn fx:id="studentFeesColumn" prefWidth="75.0" text="Fees" />
-                                                <TableColumn fx:id="studentFeesStatusColumn" prefWidth="75.0" text="Status" />
+                                                <TableColumn fx:id="studentFeesStatusColumn" prefWidth="86.0" text="Status" />
                                                             </columns>
                                                         </TableView>
+                                          <VBox alignment="CENTER_RIGHT" layoutX="796.0" layoutY="-2.0" prefHeight="392.0" prefWidth="179.0" spacing="10.0" style="-fx-background-color: #eee;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="796.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <Button disable="true" mnemonicParsing="false" prefHeight="31.0" prefWidth="132.0" text="More Info" />
+                                                <Button disable="true" mnemonicParsing="false" prefHeight="31.0" prefWidth="133.0" text=" Edit Info" />
+                                                <Button fx:id="studentDeleteBtn" disable="true" mnemonicParsing="false" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: red;" text="Delete" onMouseClicked="#handleDeleteButtonAction" />
+                                             </children>
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                             <padding>
+                                                <Insets right="10.0" />
+                                             </padding>
+                                          </VBox>
                                                     </children>
                                                 </AnchorPane>
                                             </content>
@@ -307,29 +292,29 @@
                                             <content>
                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                     <children>
-                                                        <VBox prefHeight="287.0" prefWidth="600.0">
+                                                        <VBox alignment="TOP_RIGHT" prefHeight="391.0" prefWidth="975.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                             <children>
                                                                 <Text fx:id="studentWarningText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="*Please Complete All Fields" visible="false" />
-                                                                <HBox prefHeight="59.0" prefWidth="580.0" spacing="10.0">
+                                                                <HBox alignment="TOP_CENTER" prefHeight="59.0" prefWidth="580.0" spacing="10.0">
                                                                     <children>
-                                                                        <VBox prefHeight="52.0" prefWidth="193.0">
+                                                                        <VBox prefHeight="59.0" prefWidth="195.0">
                                                                             <children>
-                                                                                <TextField fx:id="studentNameField" prefWidth="206.0" promptText="Student Name" />
+                                                                                <TextField fx:id="studentRollField" promptText="Roll Number" />
                                                                             </children>
                                                                         </VBox>
                                                                         <VBox layoutX="10.0" layoutY="10.0" prefHeight="95.0" prefWidth="194.0">
                                                                             <children>
-                                                                                <TextField fx:id="fatherNameField" promptText="Father Name" />
+                                                                                <TextField fx:id="studentNameField" prefWidth="206.0" promptText="Student Name" />
                                                                             </children>
                                                                         </VBox>
                                                                         <VBox layoutX="216.0" layoutY="10.0" prefHeight="95.0" prefWidth="194.0">
                                                                             <children>
-                                                                                <TextField fx:id="studentDobField" promptText="Date Of Birth" />
+                                                                                <TextField fx:id="fatherNameField" promptText="Father Name" />
                                                                             </children>
                                                                         </VBox>
                                                                     </children>
                                                                 </HBox>
-                                                                <HBox prefHeight="56.0" prefWidth="580.0" spacing="10.0">
+                                                                <HBox alignment="TOP_CENTER" prefHeight="56.0" prefWidth="580.0" spacing="10.0">
                                                                     <children>
                                                                         <VBox prefHeight="95.0" prefWidth="194.0">
                                                                             <children>
@@ -367,7 +352,7 @@
                                                                         </VBox>
                                                                     </children>
                                                                 </HBox>
-                                                                <HBox layoutX="20.0" layoutY="20.0" prefHeight="59.0" prefWidth="580.0" spacing="10.0">
+                                                                <HBox alignment="TOP_CENTER" layoutX="20.0" layoutY="20.0" prefHeight="59.0" prefWidth="580.0" spacing="10.0">
                                                                     <children>
                                                                         <VBox prefHeight="52.0" prefWidth="193.0">
                                                                             <children>
@@ -380,14 +365,16 @@
                                                                             </children>
                                                                         </VBox>
                                                                         <VBox layoutX="216.0" layoutY="10.0" prefHeight="95.0" prefWidth="194.0">
-                                                                            <children>
-                                                                                <TextField fx:id="studentRollField" promptText="Roll Number" />
-                                                                            </children>
+                                                         <children>
+                                                                                <TextField fx:id="studentDobField" promptText="Date Of Birth" />
+                                                         </children>
                                                                         </VBox>
                                                                     </children>
                                                                 </HBox>
-                                                                <HBox alignment="TOP_RIGHT" layoutX="20.0" layoutY="135.0" prefHeight="59.0" prefWidth="580.0" spacing="10.0">
+                                                                <HBox alignment="TOP_CENTER" layoutX="20.0" layoutY="135.0" prefHeight="59.0" prefWidth="580.0" spacing="10.0">
                                                                     <children>
+                                                      <TextField fx:id="totalFeesField" alignment="TOP_LEFT" disable="true" promptText="3000" />
+                                                      <TextField fx:id="feesStatusField" alignment="TOP_LEFT" disable="true" layoutX="360.0" layoutY="10.0" promptText="Unpaid" />
                                                                         <Button contentDisplay="RIGHT" mnemonicParsing="false" style="-fx-background-color: #aaa;" text="Reset">
                                                                             <font>
                                                                                 <Font />
@@ -430,7 +417,7 @@
                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                     <children>
                                                         <HBox prefHeight="28.0" prefWidth="600.0" style="-fx-background-color: #eee;" />
-                                                        <TableView layoutY="28.0" prefHeight="261.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                        <TableView layoutY="28.0" prefHeight="285.0" prefWidth="603.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="197.0" AnchorPane.topAnchor="0.0">
                                                             <columns>
                                                                 <TableColumn prefWidth="86.6666259765625" text="Roll Number" />
                                                                 <TableColumn prefWidth="100.6666259765625" text="Student Name" />
@@ -441,6 +428,7 @@
                                                                 <TableColumn prefWidth="98.66668701171875" text="Action" />
                                                             </columns>
                                                         </TableView>
+                                          <Button layoutX="614.0" layoutY="118.0" mnemonicParsing="false" text="Theme" />
                                                     </children>
                                                 </AnchorPane>
                                             </content>
@@ -570,4 +558,7 @@
             </tabs>
         </TabPane>
     </children>
+   <effect>
+      <DropShadow />
+   </effect>
 </AnchorPane>

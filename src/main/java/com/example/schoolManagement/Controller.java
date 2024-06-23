@@ -1,13 +1,16 @@
-package com.example.schoolmanagment;
+package com.example.schoolManagement;
 
-import com.example.schoolmanagment.database.StudentDAO;
-import com.example.schoolmanagment.database.TeacherDAO;
-import com.example.schoolmanagment.models.Student;
-import com.example.schoolmanagment.models.Teacher;
+import com.example.schoolManagement.database.StudentDAO;
+import com.example.schoolManagement.database.TeacherDAO;
+import com.example.schoolManagement.models.Student;
+import com.example.schoolManagement.models.Teacher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
@@ -16,9 +19,28 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 public class Controller {
+
+    @FXML
+    private TableView<Teacher> teacherTableView;
+
+    @FXML
+    private Button moreInfoBtn;
+
     @FXML
     public TextField studentRollField;
+    @FXML
+    public Button teacherDeleteBtn;
     @FXML
     private BarChart<String, Number> barChart;
 
@@ -68,6 +90,7 @@ public class Controller {
 
     private ObservableList<Teacher> teacherList;
 
+
     // Student fields
     @FXML
     private TableView<Student> studentTableView;
@@ -111,6 +134,13 @@ public class Controller {
     private TextField studentPhoneField;
     @FXML
     private Text studentWarningText;
+    @FXML
+    private Label totalStudents;
+    @FXML
+    private Label totalTeachers;
+
+    @FXML
+    private Button studentDeleteBtn;
 
     private ObservableList<Student> studentList;
 
@@ -162,7 +192,7 @@ public class Controller {
         genderColumn.setCellValueFactory(new PropertyValueFactory<>("gender"));
         subjectColumn.setCellValueFactory(new PropertyValueFactory<>("subject"));
         classColumn.setCellValueFactory(new PropertyValueFactory<>("classLevel"));
-        sectionColumn.setCellValueFactory(new PropertyValueFactory<>("section"));
+//        sectionColumn.setCellValueFactory(new PropertyValueFactory<>("section"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
         phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
 //        actionColumn.setCellValueFactory(new PropertyValueFactory<>("action"));
@@ -185,7 +215,21 @@ public class Controller {
 
         tableView.setItems(teacherList);
         studentTableView.setItems(studentList);
+        updateCounts();
+
+        // Bind the delete button's disabled property to the selection model's selected item property
+        studentDeleteBtn.disableProperty().bind(studentTableView.getSelectionModel().selectedItemProperty().isNull());
+        teacherDeleteBtn.disableProperty().bind(tableView.getSelectionModel().selectedItemProperty().isNull());
+        moreInfoBtn.setDisable(true);
+
+        // Bind the button to enable based on selection in the table
+        tableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            moreInfoBtn.setDisable(newValue == null);
+        });
+
     }
+
+
 
     private void loadTeachersFromDatabase() {
         // Clear the current list
@@ -203,20 +247,27 @@ public class Controller {
         studentList.addAll(studentDAO.getAllStudents());
     }
 
+    private void updateCounts() {
+        int studentCount = studentDAO.getTotalStudents();
+        int teacherCount = studentDAO.getTotalTeachers();
+        totalStudents.setText(String.valueOf(studentCount));
+        totalTeachers.setText(String.valueOf(teacherCount));
+    }
+
 
     @FXML
     private void addTeacher() {
+        String id = idField.getText();
         String name = nameField.getText();
-        String subject = subjectField.getText();
         String gender = genderMenu.getText();
+        String subject = subjectField.getText();
         String classLevel = classMenu.getText();
-        String section = sectionMenu.getText();
+//        String section = sectionMenu.getText();
         String email = emailField.getText();
         String phone = phoneField.getText();
-        String id = idField.getText();
 
         if (name.isEmpty() || subject.isEmpty() || gender.equals("Gender")
-                || classLevel.equals("Class") || section.equals("Section") || email.isEmpty()
+                || classLevel.equals("Class")  || email.isEmpty()
                 || phone.isEmpty() || id.isEmpty()) {
             warningText.setVisible(true);
         } else {
@@ -226,8 +277,7 @@ public class Controller {
                     name,
                     gender,
                     subject,
-                    Integer.parseInt(classLevel),
-                    section,
+                    classLevel,
                     email,
                     phone
             );
@@ -239,20 +289,21 @@ public class Controller {
             teacherList.add(newTeacher);
             tableView.setItems(teacherList);
             clearFields();
+            updateCounts();
         }
     }
 
     @FXML
     private void clearFields() {
+        idField.clear();
         nameField.clear();
-        subjectField.clear();
-        dobField.clear();
         genderMenu.setText("Gender");
+        subjectField.clear();
+//        dobField.clear();
         classMenu.setText("Class");
-        sectionMenu.setText("Section");
+//        sectionMenu.setText("Section");
         emailField.clear();
         phoneField.clear();
-        idField.clear();
         warningText.setVisible(false);
     }
 
@@ -318,7 +369,7 @@ public class Controller {
         String phone = studentPhoneField.getText();
         String rollNumber = studentRollField.getText();
         int totalFees = 3000;
-        boolean feesStatus = false;
+        String feesStatus = "Unpaid";
 
         if (studentname.isEmpty() || fatherName.isEmpty() || dob.isEmpty() || gender.equals("Gender")
                 || classLevel.equals("Class") || section.equals("Section") || email.isEmpty()
@@ -335,7 +386,7 @@ public class Controller {
                     section,
                     email,
                     phone,
-                    Integer.parseInt(rollNumber),
+                    rollNumber,
                     totalFees,
                     feesStatus
             );
@@ -348,6 +399,90 @@ public class Controller {
             studentList.add(newStudent);
             studentTableView.setItems(studentList);
             clearStudentFields();
+            updateCounts();
         }
     }
+
+    public void handleDeleteButtonAction(MouseEvent mouseEvent) {
+        Student selectedStudent = studentTableView.getSelectionModel().getSelectedItem();
+        if (selectedStudent != null) {
+            deleteStudent(selectedStudent);
+        }
+    }
+
+    private void deleteStudent(Student student) {
+        String sql = "DELETE FROM students WHERE rollNumber = ?";
+
+        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:school.db");
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+            pstmt.setString(1, student.getRollNumber());
+            pstmt.executeUpdate();
+
+            // Remove the student from the TableView
+            studentTableView.getItems().remove(student);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void handleTeacherDelete(ActionEvent mouseEvent) {
+        Teacher selectedTeacher = tableView.getSelectionModel().getSelectedItem();
+        if (selectedTeacher != null) {
+            deleteTeacher(selectedTeacher);
+        }
+    }
+
+    private void deleteTeacher(Teacher selectedTeacher) {
+        String sql = "DELETE FROM teachers WHERE id = ?";
+
+        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:school.db");
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+            pstmt.setInt(1, selectedTeacher.getId());
+            pstmt.executeUpdate();
+
+            // Remove the teacher from the TableView
+            teacherList.remove(selectedTeacher);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @FXML
+    private void handleMoreInfo(ActionEvent event) {
+        Teacher selectedTeacher = tableView.getSelectionModel().getSelectedItem();
+        if (selectedTeacher != null) {
+            showTeacherDetails(selectedTeacher);
+        }
+    }
+
+    private void showTeacherDetails(Teacher teacher) {
+        try {
+            // Load the new window FXML file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/schoolManagement/teacher_details.fxml"));
+            Parent root = loader.load();
+
+            // Get the controller instance
+            TeacherDetailsController controller = loader.getController();
+
+            // Pass the selected teacher to the controller
+            controller.initData(teacher);
+
+            // Create a new stage for the teacher details window
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Teacher Details");
+            stage.setScene(new Scene(root));
+            stage.showAndWait(); // Show and wait for it to be closed
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

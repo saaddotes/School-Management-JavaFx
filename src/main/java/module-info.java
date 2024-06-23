@@ -2,10 +2,11 @@ module com.example.schoolmanagment {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
+    requires java.desktop;
 
 
-    opens com.example.schoolmanagment to javafx.fxml;
-    exports com.example.schoolmanagment;
-    exports com.example.schoolmanagment.models;
-    opens com.example.schoolmanagment.models to javafx.fxml;
+    opens com.example.schoolManagement to javafx.fxml;
+    exports com.example.schoolManagement;
+    exports com.example.schoolManagement.models;
+    opens com.example.schoolManagement.models to javafx.fxml;
 }

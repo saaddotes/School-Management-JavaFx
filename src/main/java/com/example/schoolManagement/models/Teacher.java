@@ -1,4 +1,4 @@
-package com.example.schoolmanagment.models;
+package com.example.schoolManagement.models;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -8,18 +8,16 @@ public class Teacher {
     private final SimpleStringProperty name;
     private final SimpleStringProperty gender;
     private final SimpleStringProperty subject;
-    private final SimpleIntegerProperty classLevel;
-    private final SimpleStringProperty section;
+    private final SimpleStringProperty classLevel;
     private final SimpleStringProperty email;
     private final SimpleStringProperty phone;
 
-    public Teacher(int id, String name, String gender, String subject, int classLevel, String section, String email, String phone) {
+    public Teacher(int id, String name, String gender, String subject, String classLevel, String email, String phone) {
         this.id = new SimpleIntegerProperty(id);
         this.name = new SimpleStringProperty(name);
         this.gender = new SimpleStringProperty(gender);
         this.subject = new SimpleStringProperty(subject);
-        this.classLevel = new SimpleIntegerProperty(classLevel);
-        this.section = new SimpleStringProperty(section);
+        this.classLevel = new SimpleStringProperty(classLevel);
         this.email = new SimpleStringProperty(email);
         this.phone = new SimpleStringProperty(phone);
     }
@@ -32,28 +30,48 @@ public class Teacher {
         return name.get();
     }
 
+    public void setName(String name) {
+        this.name.set(name);
+    }
+
     public String getGender() {
         return gender.get();
+    }
+
+    public void setGender(String gender) {
+        this.gender.set(gender);
     }
 
     public String getSubject() {
         return subject.get();
     }
 
-    public int getClassLevel() {
+    public void setSubject(String subject) {
+        this.subject.set(subject);
+    }
+
+    public String getClassLevel() {
         return classLevel.get();
     }
 
-    public String getSection() {
-        return section.get();
+    public void setClassLevel(String classLevel) {
+        this.classLevel.set(classLevel);
     }
 
     public String getEmail() {
         return email.get();
     }
 
+    public void setEmail(String email) {
+        this.email.set(email);
+    }
+
     public String getPhone() {
         return phone.get();
+    }
+
+    public void setPhone(String phone) {
+        this.phone.set(phone);
     }
 
     public SimpleIntegerProperty idProperty() {
@@ -72,12 +90,8 @@ public class Teacher {
         return subject;
     }
 
-    public SimpleIntegerProperty classLevelProperty() {
+    public SimpleStringProperty classLevelProperty() {
         return classLevel;
-    }
-
-    public SimpleStringProperty sectionProperty() {
-        return section;
     }
 
     public SimpleStringProperty emailProperty() {
@@ -86,5 +100,9 @@ public class Teacher {
 
     public SimpleStringProperty phoneProperty() {
         return phone;
+    }
+
+    public String getImagePath() {
+        return "images/teacher.png";
     }
 }

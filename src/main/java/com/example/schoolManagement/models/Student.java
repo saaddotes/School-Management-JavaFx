@@ -1,6 +1,5 @@
-package com.example.schoolmanagment.models;
+package com.example.schoolManagement.models;
 
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
@@ -13,11 +12,11 @@ public class Student {
     private final SimpleStringProperty section;
     private final SimpleStringProperty email;
     private final SimpleStringProperty phone;
-    private final SimpleIntegerProperty rollNumber;
+    private final SimpleStringProperty rollNumber;
     private final SimpleIntegerProperty totalFees;
-    private final SimpleBooleanProperty feesStatus;
+    private final SimpleStringProperty feesStatus;
 
-    public Student(String name, String father, String dob, String gender, String classLevel, String section, String email, String phone, int rollNumber, int totalFees, boolean feesStatus) {
+    public Student(String name, String father, String dob, String gender, String classLevel, String section, String email, String phone, String rollNumber, int totalFees, String feesStatus) {
         this.name = new SimpleStringProperty(name);
         this.father = new SimpleStringProperty(father);
         this.dob = new SimpleStringProperty(dob);
@@ -26,12 +25,12 @@ public class Student {
         this.section = new SimpleStringProperty(section);
         this.email = new SimpleStringProperty(email);
         this.phone = new SimpleStringProperty(phone);
-        this.rollNumber = new SimpleIntegerProperty(rollNumber);
+        this.rollNumber = new SimpleStringProperty(rollNumber);
         this.totalFees = new SimpleIntegerProperty(totalFees);
-        this.feesStatus = new SimpleBooleanProperty(feesStatus);
+        this.feesStatus = new SimpleStringProperty(feesStatus);
     }
 
-    public int getRollNumber() {
+    public String getRollNumber() {
         return rollNumber.get();
     }
 
@@ -99,7 +98,7 @@ public class Student {
         return phone;
     }
 
-    public SimpleIntegerProperty rollNumberProperty() {
+    public SimpleStringProperty rollNumberProperty() {
         return rollNumber;
     }
 
@@ -115,11 +114,11 @@ public class Student {
         return totalFees;
     }
 
-    public boolean isFeesStatus() {
+    public String isFeesStatus() {
         return feesStatus.get();
     }
 
-    public SimpleBooleanProperty feesStatusProperty() {
+    public SimpleStringProperty feesStatusProperty() {
         return feesStatus;
     }
 }
