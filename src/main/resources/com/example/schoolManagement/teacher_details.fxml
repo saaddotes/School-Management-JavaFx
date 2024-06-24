@@ -38,13 +38,31 @@
                     <children>
                         <VBox prefHeight="200.0" prefWidth="100.0">
                             <children>
-                                <Label text="Teacher ID" textAlignment="CENTER" />
-                                <Label layoutX="10.0" layoutY="10.0" text="Teacher Name" textAlignment="CENTER" />
-                                <Label layoutX="10.0" layoutY="27.0" text="Gender" textAlignment="CENTER" />
-                                <Label layoutX="10.0" layoutY="45.0" text="Subject" textAlignment="CENTER" />
-                                <Label layoutX="10.0" layoutY="62.0" text="Classes" textAlignment="CENTER" />
-                                <Label layoutX="10.0" layoutY="79.0" text="Email Address" textAlignment="CENTER" />
-                                <Label layoutX="10.0" layoutY="97.0" text="Phone Number" textAlignment="CENTER" />
+                                <Label prefHeight="19.0" prefWidth="57.0" text="Teacher ID" textAlignment="CENTER" />
+                                <Label layoutX="10.0" layoutY="10.0" prefHeight="24.0" prefWidth="77.0" text="Teacher Name" textAlignment="CENTER">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin></Label>
+                                <Label layoutX="10.0" layoutY="27.0" prefHeight="25.0" prefWidth="39.0" text="Gender" textAlignment="CENTER">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin></Label>
+                                <Label layoutX="10.0" layoutY="45.0" prefHeight="23.0" prefWidth="39.0" text="Subject" textAlignment="CENTER">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin></Label>
+                                <Label layoutX="10.0" layoutY="62.0" prefHeight="23.0" prefWidth="38.0" text="Classes" textAlignment="CENTER">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin></Label>
+                                <Label layoutX="10.0" layoutY="79.0" prefHeight="32.0" prefWidth="75.0" text="Email Address" textAlignment="CENTER">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin></Label>
+                                <Label layoutX="10.0" layoutY="97.0" text="Phone Number" textAlignment="CENTER">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin></Label>
                             </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0">
@@ -69,6 +87,7 @@
                         <Insets right="10.0" />
                     </HBox.margin>
                 </Button>
+            <Button fx:id="updateButton" disable="true" layoutX="310.0" layoutY="19.0" mnemonicParsing="false" onAction="#handleUpdateButtonAction" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #0000FF;" text="Update" textFill="WHITE"  />
             </children>
         </HBox>
     </children>

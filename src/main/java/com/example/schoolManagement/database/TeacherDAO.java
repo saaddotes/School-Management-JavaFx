@@ -48,24 +48,25 @@ public class TeacherDAO {
         }
         return teachers;
     }
+    private final String url = "jdbc:sqlite:school.db";
 
     public void updateTeacher(Teacher teacher) {
-        String sql = "UPDATE teachers SET name = ?, gender = ?, subject = ?, class = ?, email = ?, phone = ? WHERE id = ?";
+        String sql = "UPDATE teachers SET name = ?, gender = ?, subject = ?, classLevel = ?, email = ?, phone = ? WHERE id = ?";
 
-        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:school.db");
-             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, teacher.getName());
             pstmt.setString(2, teacher.getGender());
             pstmt.setString(3, teacher.getSubject());
-            pstmt.setString(4, teacher.getClassLevel());
+            pstmt.setString(4, teacher.getClassLevel()); // Ensure this matches your actual column name
             pstmt.setString(5, teacher.getEmail());
             pstmt.setString(6, teacher.getPhone());
             pstmt.setInt(7, teacher.getId());
 
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage()+"This");
         }
     }
 }
