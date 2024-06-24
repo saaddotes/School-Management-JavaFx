@@ -50,12 +50,12 @@
                         <VBox prefHeight="200.0" prefWidth="100.0">
                             <children>
                                 <Label fx:id="teacherIDLabel" layoutX="10.0" layoutY="10.0" text="Teacher ID" textAlignment="CENTER" />
-                                <TextField fx:id="teacherNameField" text="Teacher Name" editable="false" />
-                                <TextField fx:id="teacherGenderField" text="Gender" editable="false" />
-                                <TextField fx:id="teacherSubjectField" text="Subject" editable="false" />
-                                <TextField fx:id="teacherClassField" text="Classes" editable="false" />
-                                <TextField fx:id="teacherEmailField" text="Email" editable="false" />
-                                <TextField fx:id="teacherPhoneField" text="Phone" editable="false" />
+                                <TextField fx:id="teacherNameField" editable="false" text="Teacher Name" />
+                                <TextField fx:id="teacherGenderField" editable="false" text="Gender" />
+                                <TextField fx:id="teacherSubjectField" editable="false" text="Subject" />
+                                <TextField fx:id="teacherClassField" editable="false" text="Classes" />
+                                <TextField fx:id="teacherEmailField" editable="false" text="Email" />
+                                <TextField fx:id="teacherPhoneField" editable="false" text="Phone" />
                             </children>
                         </VBox>
                     </children>
@@ -64,7 +64,7 @@
         </HBox>
         <HBox alignment="CENTER_RIGHT" prefHeight="54.0" prefWidth="380.0" spacing="5.0">
             <children>
-                <Button fx:id="editButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #0000FF;" text="Edit" textFill="WHITE" onAction="#handleEditButtonAction">
+                <Button fx:id="editButton" mnemonicParsing="false" onAction="#handleEditButtonAction" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #0000FF;" text="Edit" textFill="WHITE">
                     <HBox.margin>
                         <Insets right="10.0" />
                     </HBox.margin>

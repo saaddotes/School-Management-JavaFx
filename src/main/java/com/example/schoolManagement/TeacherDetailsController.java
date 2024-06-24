@@ -5,15 +5,11 @@ import com.example.schoolManagement.models.Teacher;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
 
 public class TeacherDetailsController {
 
-    @FXML
-    private ImageView teacherImageView;
     @FXML
     private Label teacherIDLabel;
     @FXML
