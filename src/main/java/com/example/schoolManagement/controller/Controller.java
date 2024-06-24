@@ -1,4 +1,4 @@
-package com.example.schoolManagement;
+package com.example.schoolManagement.controller;
 
 import com.example.schoolManagement.database.StudentDAO;
 import com.example.schoolManagement.database.TeacherDAO;
@@ -31,11 +31,14 @@ import java.sql.SQLException;
 
 public class Controller {
 
+    public Text totalIncome;
     @FXML
     private TableView<Teacher> teacherTableView;
 
     @FXML
     private Button moreInfoBtn;
+    @FXML
+    private Button studentMoreInfoBtn;
 
     @FXML
     public TextField studentRollField;
@@ -221,11 +224,17 @@ public class Controller {
         studentDeleteBtn.disableProperty().bind(studentTableView.getSelectionModel().selectedItemProperty().isNull());
         teacherDeleteBtn.disableProperty().bind(tableView.getSelectionModel().selectedItemProperty().isNull());
         moreInfoBtn.setDisable(true);
+        studentMoreInfoBtn.setDisable(true);
 
         // Bind the button to enable based on selection in the table
         tableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             moreInfoBtn.setDisable(newValue == null);
         });
+
+        studentTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            studentMoreInfoBtn.setDisable(newValue == null);
+        });
+
 
     }
 
@@ -249,7 +258,7 @@ public class Controller {
 
     private void updateCounts() {
         int studentCount = studentDAO.getTotalStudents();
-        int teacherCount = studentDAO.getTotalTeachers();
+        int teacherCount = teacherDAO.getTotalTeachers();
         totalStudents.setText(String.valueOf(studentCount));
         totalTeachers.setText(String.valueOf(teacherCount));
     }
@@ -461,10 +470,42 @@ public class Controller {
         }
     }
 
+    @FXML
+    private void handleMoreInfoStudent(ActionEvent event) {
+        Student selectedStudent = studentTableView.getSelectionModel().getSelectedItem();
+        if (selectedStudent != null) {
+            showStudentDetails(selectedStudent);
+        }
+    }
+
+    private void showStudentDetails(Student student) {
+        try {
+            // Load the new window FXML file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/schoolManagement/Fxml/student_details.fxml"));
+            Parent root = loader.load();
+
+            // Get the controller instance
+            StudentDetailsController controller = loader.getController();
+
+            // Pass the selected student to the controller
+            controller.initData(student);
+
+            // Create a new stage for the teacher details window
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Student Details");
+            stage.setScene(new Scene(root));
+            stage.showAndWait(); // Show and wait for it to be closed
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     private void showTeacherDetails(Teacher teacher) {
         try {
             // Load the new window FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/schoolManagement/teacher_details.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/schoolManagement/Fxml/teacher_details.fxml"));
             Parent root = loader.load();
 
             // Get the controller instance

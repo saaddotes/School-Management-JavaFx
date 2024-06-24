@@ -1,22 +1,21 @@
 package com.example.schoolManagement.database;
 
 import com.example.schoolManagement.models.Student;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class StudentDAO {
+
+    private final String url = "jdbc:sqlite:school.db";
+
     public void addStudent(Student student) {
-        String query = "INSERT INTO students (rollNumber, name, fatherName,dob, gender, classLevel, section, email, phone,totalFees, feesStatus) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?,?)";
+        String query = "INSERT INTO students (rollNumber, name, fatherName, dob, gender, classLevel, section, email, phone, totalFees, feesStatus) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setString(1, student.getRollNumber());
             pstmt.setString(2, student.getName());
-            pstmt.setString(3, student.getFatherName());
+            pstmt.setString(3, student.getFather());
             pstmt.setString(4, student.getDob());
             pstmt.setString(5, student.getGender());
             pstmt.setString(6, student.getClassLevel());
@@ -25,7 +24,6 @@ public class StudentDAO {
             pstmt.setString(9, student.getPhone());
             pstmt.setInt(10, student.getTotalFees());
             pstmt.setString(11, student.isFeesStatus());
-
 
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -75,18 +73,27 @@ public class StudentDAO {
         return 0;
     }
 
-    public int getTotalTeachers() {
-        String query = "SELECT COUNT(*) AS total FROM teachers";
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(query);
-             ResultSet rs = pstmt.executeQuery()) {
-            if (rs.next()) {
-                return rs.getInt("total");
-            }
+    public void updateStudent(Student student) {
+        String sql = "UPDATE students SET name = ?, fatherName = ?, dob = ?, gender = ?, classLevel = ?, section = ?, email = ?, phone = ?, totalFees = ?, feesStatus = ? WHERE rollNumber = ?";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, student.getName());
+            pstmt.setString(2, student.getFather());
+            pstmt.setString(3, student.getDob());
+            pstmt.setString(4, student.getGender());
+            pstmt.setString(5, student.getClassLevel());
+            pstmt.setString(6, student.getSection());
+            pstmt.setString(7, student.getEmail());
+            pstmt.setString(8, student.getPhone());
+            pstmt.setInt(9, student.getTotalFees());
+            pstmt.setString(10, student.isFeesStatus());
+            pstmt.setString(11, student.getRollNumber());
+
+            pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return 0;
     }
-
 }

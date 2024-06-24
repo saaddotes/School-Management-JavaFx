@@ -1,4 +1,4 @@
-package com.example.schoolManagement;
+package com.example.schoolManagement.controller;
 
 import com.example.schoolManagement.database.TeacherDAO;
 import com.example.schoolManagement.models.Teacher;

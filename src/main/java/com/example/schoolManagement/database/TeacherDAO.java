@@ -48,6 +48,22 @@ public class TeacherDAO {
         }
         return teachers;
     }
+
+    public int getTotalTeachers() {
+        String query = "SELECT COUNT(*) AS total FROM teachers";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query);
+             ResultSet rs = pstmt.executeQuery()) {
+            if (rs.next()) {
+                return rs.getInt("total");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+
     private final String url = "jdbc:sqlite:school.db";
 
     public void updateTeacher(Teacher teacher) {
