@@ -1,7 +1,6 @@
 package com.example.schoolManagement.controller;
 
 import com.example.schoolManagement.database.StudentDAO;
-import com.example.schoolManagement.controller.DashboardController;
 import com.example.schoolManagement.models.Student;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -73,14 +72,15 @@ public class StudentsController {
     @FXML
     private Label totalStudents;
 
-    private ObservableList<Student> studentList;
+    private final ObservableList<Student> studentList = FXCollections.observableArrayList();
     private StudentDAO studentDAO;
 
     @FXML
     public void initialize() {
         studentDAO = new StudentDAO();
-        studentList = FXCollections.observableArrayList();
-        loadStudentsFromDatabase();
+
+        studentList.clear();
+        studentList.addAll(studentDAO.getAllStudents());
 
         rollNumberColumn.setCellValueFactory(new PropertyValueFactory<>("rollNumber"));
         studentNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -94,17 +94,9 @@ public class StudentsController {
         studentFeesStatusColumn.setCellValueFactory(new PropertyValueFactory<>("feesStatus"));
 
         studentTableView.setItems(studentList);
-//        updateCounts();
 
         studentDeleteBtn.disableProperty().bind(studentTableView.getSelectionModel().selectedItemProperty().isNull());
-        studentMoreInfoBtn.setDisable(true);
-
-        studentTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> studentMoreInfoBtn.setDisable(newValue == null));
-    }
-
-    private void loadStudentsFromDatabase() {
-        studentList.clear();
-        studentList.addAll(studentDAO.getAllStudents());
+        studentMoreInfoBtn.disableProperty().bind(studentTableView.getSelectionModel().selectedItemProperty().isNull());
     }
 
     @FXML
@@ -212,7 +204,7 @@ public class StudentsController {
 
     private void showStudentDetails(Student student) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/schoolManagement/fxml/student_details.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/schoolManagement/Fxml/Details_Student.fxml"));
             Parent root = loader.load();
             StudentDetailsController controller = loader.getController();
             controller.initData(student);

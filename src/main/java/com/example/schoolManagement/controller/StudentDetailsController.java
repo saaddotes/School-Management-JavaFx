@@ -3,11 +3,10 @@ package com.example.schoolManagement.controller;
 import com.example.schoolManagement.database.StudentDAO;
 import com.example.schoolManagement.models.Student;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 public class StudentDetailsController {
 
@@ -34,8 +33,6 @@ public class StudentDetailsController {
     @FXML
     private TextField studentFeesStatusField;
     @FXML
-    private ImageView studentImageView;
-    @FXML
     private Button studentEditButton;
     @FXML
     private Button studentUpdateButton;
@@ -55,14 +52,12 @@ public class StudentDetailsController {
         studentPhoneField.setText(student.getPhone());
         studentTotalFeesField.setText(String.valueOf(student.getTotalFees()));
         studentFeesStatusField.setText(student.isFeesStatus());
-        // studentImageView.setImage(new Image(student.getImagePath())); // Uncomment if image path is provided
 
         setFieldsEditable(false);
     }
 
     @FXML
     private void handleEditButtonAction() {
-        // Enable text fields for editing
         setFieldsEditable(true);
 
         // Enable the Update button and disable the Edit button
@@ -94,6 +89,8 @@ public class StudentDetailsController {
         // Enable the Edit button and disable the Update button
         studentEditButton.setDisable(false);
         studentUpdateButton.setDisable(true);
+
+        showAlert("Student details updated");
     }
 
     private void setFieldsEditable(boolean editable) {
@@ -107,5 +104,13 @@ public class StudentDetailsController {
         studentPhoneField.setEditable(editable);
         studentTotalFeesField.setEditable(editable);
         studentFeesStatusField.setEditable(editable);
+    }
+
+    private void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

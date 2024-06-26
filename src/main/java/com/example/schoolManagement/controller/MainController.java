@@ -31,9 +31,8 @@ public class MainController {
 
     private void loadFXML(AnchorPane pane, String fxmlPath) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-            AnchorPane newPane = loader.load();
-            pane.getChildren().add(newPane);
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
+            pane.getChildren().add(fxmlLoader.load());
         } catch (IOException e) {
             e.printStackTrace();
         }

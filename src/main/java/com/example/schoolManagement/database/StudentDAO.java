@@ -117,4 +117,31 @@ public class StudentDAO {
 
         return classData;
     }
+
+    public Student getStudentById(String id) {
+        String sql = "SELECT * FROM students WHERE rollNumber = ?";
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return new Student(
+                        rs.getString("name"),
+                        rs.getString("fatherName"),
+                        rs.getString("dob"),
+                        rs.getString("gender"),
+                        rs.getString("classLevel"),
+                        rs.getString("section"),
+                        rs.getString("email"),
+                        rs.getString("phone"),
+                        rs.getString("rollNumber"),
+                        rs.getInt("totalFees"),
+                        rs.getString("feesStatus")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

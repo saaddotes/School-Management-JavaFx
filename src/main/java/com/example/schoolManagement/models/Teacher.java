@@ -74,35 +74,4 @@ public class Teacher {
         this.phone.set(phone);
     }
 
-    public SimpleIntegerProperty idProperty() {
-        return id;
-    }
-
-    public SimpleStringProperty nameProperty() {
-        return name;
-    }
-
-    public SimpleStringProperty genderProperty() {
-        return gender;
-    }
-
-    public SimpleStringProperty subjectProperty() {
-        return subject;
-    }
-
-    public SimpleStringProperty classLevelProperty() {
-        return classLevel;
-    }
-
-    public SimpleStringProperty emailProperty() {
-        return email;
-    }
-
-    public SimpleStringProperty phoneProperty() {
-        return phone;
-    }
-
-    public String getImagePath() {
-        return "images/teacher.png";
-    }
 }

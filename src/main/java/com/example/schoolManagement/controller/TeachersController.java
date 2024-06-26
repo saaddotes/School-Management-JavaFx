@@ -60,16 +60,17 @@ public class TeachersController {
     @FXML
     private Text warningText;
 
-    private ObservableList<Teacher> teacherList;
+
+    private final ObservableList<Teacher> teacherList = FXCollections.observableArrayList();
     private TeacherDAO teacherDAO;
 
-    private DashboardController dashboardController;
 
     @FXML
     public void initialize() {
         teacherDAO = new TeacherDAO();
-        teacherList = FXCollections.observableArrayList();
-        loadTeachersFromDatabase();
+
+        teacherList.clear();
+        teacherList.addAll(teacherDAO.getAllTeachers());
 
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -80,22 +81,9 @@ public class TeachersController {
         phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
 
         tableView.setItems(teacherList);
-//        updateCounts();
 
         teacherDeleteBtn.disableProperty().bind(tableView.getSelectionModel().selectedItemProperty().isNull());
-        moreInfoBtn.setDisable(true);
-
-        tableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> moreInfoBtn.setDisable(newValue == null));
-    }
-
-
-    public void setDashboardController(DashboardController dashboardController) {
-        this.dashboardController = dashboardController;
-    }
-
-    private void loadTeachersFromDatabase() {
-        teacherList.clear();
-        teacherList.addAll(teacherDAO.getAllTeachers());
+        moreInfoBtn.disableProperty().bind(tableView.getSelectionModel().selectedItemProperty().isNull());
     }
 
 
@@ -113,7 +101,6 @@ public class TeachersController {
                 || classLevel.equals("Class") || email.isEmpty()
                 || phone.isEmpty() || id.isEmpty()) {
             warningText.setVisible(true);
-            System.out.println("Wrong Data");
         } else {
             warningText.setVisible(false);
             Teacher newTeacher = new Teacher(
@@ -131,8 +118,6 @@ public class TeachersController {
             tableView.setItems(teacherList);
             clearFields();
 
-//            DashboardController dashboardController = new DashboardController();
-//            dashboardController.updateCountTeacher(teacherDAO.getTotalTeachers());
       }
     }
 
@@ -193,7 +178,7 @@ public class TeachersController {
 
     private void showTeacherDetails(Teacher teacher) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/schoolManagement/fxml/teacher_details.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/schoolManagement/Fxml/Details_Teacher.fxml"));
             Parent root = loader.load();
             TeacherDetailsController controller = loader.getController();
             controller.initData(teacher);

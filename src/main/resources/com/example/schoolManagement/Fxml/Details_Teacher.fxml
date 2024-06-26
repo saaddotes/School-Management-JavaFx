@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" prefHeight="319.0" prefWidth="400.0" spacing="10"
+      xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.schoolManagement.controller.TeacherDetailsController">
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+    </padding>
+    <Label text="Teacher Details" textAlignment="CENTER" textFill="#0084ff">
+        <font>
+            <Font size="25.0"/>
+        </font>
+        <VBox.margin>
+            <Insets bottom="30.0"/>
+        </VBox.margin>
+    </Label>
+    <HBox prefHeight="100.0" prefWidth="200.0">
+        <ImageView fx:id="teacherImageView" fitHeight="125.0" fitWidth="113.0" pickOnBounds="true"
+                   preserveRatio="true">
+            <effect>
+                <DropShadow/>
+            </effect>
+            <Image url="@user.png"/>
+        </ImageView>
+        <HBox alignment="TOP_CENTER" prefHeight="168.0" prefWidth="267.0">
+            <VBox prefHeight="200.0" prefWidth="100.0">
+                <Label prefHeight="19.0" prefWidth="57.0" text="Teacher ID" textAlignment="CENTER"/>
+                <Label layoutX="10.0" layoutY="10.0" prefHeight="24.0" prefWidth="77.0" text="Teacher Name"
+                       textAlignment="CENTER">
+                    <VBox.margin>
+                        <Insets/>
+                    </VBox.margin>
+                </Label>
+                <Label layoutX="10.0" layoutY="27.0" prefHeight="25.0" prefWidth="39.0" text="Gender"
+                       textAlignment="CENTER">
+                    <VBox.margin>
+                        <Insets/>
+                    </VBox.margin>
+                </Label>
+                <Label layoutX="10.0" layoutY="45.0" prefHeight="23.0" prefWidth="39.0" text="Subject"
+                       textAlignment="CENTER">
+                    <VBox.margin>
+                        <Insets/>
+                    </VBox.margin>
+                </Label>
+                <Label layoutX="10.0" layoutY="62.0" prefHeight="23.0" prefWidth="38.0" text="Classes"
+                       textAlignment="CENTER">
+                    <VBox.margin>
+                        <Insets/>
+                    </VBox.margin>
+                </Label>
+                <Label layoutX="10.0" layoutY="79.0" prefHeight="32.0" prefWidth="75.0" text="Email Address"
+                       textAlignment="CENTER">
+                    <VBox.margin>
+                        <Insets/>
+                    </VBox.margin>
+                </Label>
+                <Label layoutX="10.0" layoutY="97.0" text="Phone Number" textAlignment="CENTER">
+                    <VBox.margin>
+                        <Insets/>
+                    </VBox.margin>
+                </Label>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+                <Label fx:id="teacherIDLabel" layoutX="10.0" layoutY="10.0" text="Teacher ID"
+                       textAlignment="CENTER"/>
+                <TextField fx:id="teacherNameField" editable="false" text="Teacher Name"/>
+                <TextField fx:id="teacherGenderField" editable="false" text="Gender"/>
+                <TextField fx:id="teacherSubjectField" editable="false" text="Subject"/>
+                <TextField fx:id="teacherClassField" editable="false" text="Classes"/>
+                <TextField fx:id="teacherEmailField" editable="false" text="Email"/>
+                <TextField fx:id="teacherPhoneField" editable="false" text="Phone"/>
+            </VBox>
+        </HBox>
+    </HBox>
+    <HBox alignment="CENTER_RIGHT" prefHeight="54.0" prefWidth="380.0" spacing="5.0">
+        <Button fx:id="editButton" mnemonicParsing="false" onAction="#handleEditButtonAction" prefHeight="25.0"
+                prefWidth="70.0" style="-fx-background-color: #0000FF;" text="Edit" textFill="WHITE">
+            <HBox.margin>
+                <Insets right="10.0"/>
+            </HBox.margin>
+        </Button>
+        <Button fx:id="updateButton" disable="true" layoutX="310.0" layoutY="19.0" mnemonicParsing="false"
+                onAction="#handleUpdateButtonAction" prefHeight="25.0" prefWidth="70.0"
+                style="-fx-background-color: #0000FF;" text="Update" textFill="WHITE"/>
+    </HBox>
+</VBox>

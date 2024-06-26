@@ -38,57 +38,42 @@ public class DashboardController {
         updateCountStudent(studentDAO.getTotalStudents());
         updateCountTeacher(teacherDAO.getTotalTeachers());
 
-
         // Set up the axes for the BarChart
         CategoryAxis xAxis = (CategoryAxis) barChart.getXAxis();
         NumberAxis yAxis = (NumberAxis) barChart.getYAxis();
 
-        xAxis.setLabel("Class");
+        xAxis.setLabel("Classes");
         yAxis.setLabel("Count");
 
-        updateStudentCount();
-    }
+        XYChart.Series<String, Number> students = new XYChart.Series<>();
+        students.setName("Students Count");
 
-    @FXML
-    private void handleToggleData() {
-        if (toggleDataButton.isSelected()) {
-            updateTeacherCount();
-        } else {
-            updateStudentCount();
-        }
-    }
-
-
-    private void updateStudentCount() {
         Map<String, Integer> studentCountByClass = studentDAO.getStudentCountByClass();
-        updateChart(studentCountByClass, "Student Count");
-    }
 
-    private void updateTeacherCount() {
-        Map<String, Integer> teacherCountByClass = teacherDAO.getTeacherCountByClass();
-        updateChart(teacherCountByClass, "Teacher Count");
-    }
-
-    private void updateChart(Map<String, Integer> dataMap, String seriesName) {
-        XYChart.Series<String, Number> series = new XYChart.Series<>();
-        series.setName(seriesName);
-
-        for (Map.Entry<String, Integer> entry : dataMap.entrySet()) {
-            series.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
+        for (Map.Entry<String, Integer> entry : studentCountByClass.entrySet()) {
+            students.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
         }
 
-        barChart.getData().clear();
-        barChart.getData().add(series);
-    }
+        XYChart.Series<String, Number> teachers = new XYChart.Series<>();
+        teachers.setName("Teachers Count");
 
+        Map<String, Integer> teacherCountByClass = teacherDAO.getTeacherCountByClass();
+
+        for (Map.Entry<String, Integer> entry : teacherCountByClass.entrySet()) {
+            teachers.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
+        }
+
+        barChart.getData().addAll(students, teachers);
+
+    }
 
     public void updateCountStudent(int studentCount) {
-        totalStudents.setText("" + studentCount);
+        totalStudents.setText(String.valueOf(studentCount));
     }
 
     public void updateCountTeacher(int teacherCount) {
         System.out.println(teacherCount);
-        totalTeachers.setText("" + teacherCount);
+        totalTeachers.setText(String.valueOf(teacherCount));
     }
 }
 

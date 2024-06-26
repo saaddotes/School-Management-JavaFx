@@ -15,65 +15,74 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.schoolManagement.controller.DashboardController">
-   <VBox layoutX="26.0" layoutY="33.0" prefWidth="200.0" spacing="20.0">
-      <children>    <!-- Total Students Card -->
-          <HBox prefHeight="92.0" prefWidth="201.0" style="-fx-background-color: #eee; -fx-border-radius: 25px;">
-              <VBox prefHeight="200.0" prefWidth="100.0">
-                  <AnchorPane prefHeight="73.0" prefWidth="97.0">
-                      <ImageView fitHeight="70.0" fitWidth="57.0" layoutX="20.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
-                          <Image url="@../assets/graduates.png" />
-                      </ImageView>
-                  </AnchorPane>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total Students" textAlignment="CENTER" wrappingWidth="96.78645706176758" />
-              </VBox>
-              <AnchorPane prefHeight="73.0" prefWidth="99.0">
-                  <Label fx:id="totalStudents" alignment="CENTER" contentDisplay="CENTER" prefHeight="93.0" prefWidth="99.0" text="30" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                      <font>
-                          <Font size="30.0" />
-                      </font>
-                  </Label>
-              </AnchorPane>
-          </HBox>
-      
-          <!-- Total Teachers Card -->
-          <HBox prefHeight="92.0" prefWidth="201.0" style="-fx-background-color: #eee;">
-              <VBox prefHeight="200.0" prefWidth="100.0">
-                  <AnchorPane prefHeight="73.0" prefWidth="97.0">
-                      <ImageView fitHeight="70.0" fitWidth="57.0" layoutX="20.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
-                          <Image url="@../assets/language-learning.png" />
-                      </ImageView>
-                  </AnchorPane>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total Teachers" textAlignment="CENTER" wrappingWidth="96.78645706176758" />
-              </VBox>
-              <AnchorPane prefHeight="73.0" prefWidth="99.0">
-                  <Label fx:id="totalTeachers" alignment="CENTER" text="40" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                      <font>
-                          <Font size="28.0" />
-                      </font>
-                  </Label>
-              </AnchorPane>
-          </HBox>
-      
-          <!-- Total Earnings Card -->
-          <HBox prefHeight="92.0" prefWidth="201.0" style="-fx-background-color: #eee;">
-              <VBox prefHeight="200.0" prefWidth="100.0">
-                  <AnchorPane prefHeight="73.0" prefWidth="97.0">
-                      <ImageView fitHeight="70.0" fitWidth="57.0" layoutX="20.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
-                          <Image url="@../assets/money.png" />
-                      </ImageView>
-                  </AnchorPane>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total Earning" textAlignment="CENTER" wrappingWidth="96.78645706176758" />
-              </VBox>
-              <AnchorPane prefHeight="73.0" prefWidth="99.0">
-                  <Text fx:id="totalIncome" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rs 2300" textAlignment="CENTER" wrappingWidth="102.9271240234375">
-                      <font>
-                          <Font size="23.0" />
-                      </font>
-                  </Text>
-              </AnchorPane>
-          </HBox>
-      </children>
-   </VBox>
+    <VBox layoutX="26.0" layoutY="33.0" prefWidth="200.0" spacing="20.0">
+        <!-- Total Students Card -->
+        <HBox prefHeight="92.0" prefWidth="201.0" style="-fx-background-color: #eee; -fx-border-radius: 25px;">
+            <VBox prefHeight="200.0" prefWidth="100.0">
+                <AnchorPane prefHeight="73.0" prefWidth="97.0">
+                    <ImageView fitHeight="70.0" fitWidth="57.0" layoutX="20.0" layoutY="8.0" pickOnBounds="true"
+                               preserveRatio="true">
+                        <Image url="@../assets/graduates.png"/>
+                    </ImageView>
+                </AnchorPane>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total Students" textAlignment="CENTER"
+                      wrappingWidth="96.78645706176758"/>
+            </VBox>
+            <AnchorPane prefHeight="73.0" prefWidth="99.0">
+                <Label fx:id="totalStudents" alignment="CENTER" contentDisplay="CENTER" prefHeight="93.0"
+                       prefWidth="99.0" text="30" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0"
+                       AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <font>
+                        <Font size="30.0"/>
+                    </font>
+                </Label>
+            </AnchorPane>
+        </HBox>
+
+        <!-- Total Teachers Card -->
+        <HBox prefHeight="92.0" prefWidth="201.0" style="-fx-background-color: #eee;">
+            <VBox prefHeight="200.0" prefWidth="100.0">
+                <AnchorPane prefHeight="73.0" prefWidth="97.0">
+                    <ImageView fitHeight="70.0" fitWidth="57.0" layoutX="20.0" layoutY="8.0" pickOnBounds="true"
+                               preserveRatio="true">
+                        <Image url="@../assets/language-learning.png"/>
+                    </ImageView>
+                </AnchorPane>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total Teachers" textAlignment="CENTER"
+                      wrappingWidth="96.78645706176758"/>
+            </VBox>
+            <AnchorPane prefHeight="73.0" prefWidth="99.0">
+                <Label fx:id="totalTeachers" alignment="CENTER" text="40" AnchorPane.bottomAnchor="0.0"
+                       AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <font>
+                        <Font size="28.0"/>
+                    </font>
+                </Label>
+            </AnchorPane>
+        </HBox>
+
+        <!-- Total Earnings Card -->
+        <HBox prefHeight="92.0" prefWidth="201.0" style="-fx-background-color: #eee;">
+            <VBox prefHeight="200.0" prefWidth="100.0">
+                <AnchorPane prefHeight="73.0" prefWidth="97.0">
+                    <ImageView fitHeight="70.0" fitWidth="57.0" layoutX="20.0" layoutY="8.0" pickOnBounds="true"
+                               preserveRatio="true">
+                        <Image url="@../assets/money.png"/>
+                    </ImageView>
+                </AnchorPane>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total Earning" textAlignment="CENTER"
+                      wrappingWidth="96.78645706176758"/>
+            </VBox>
+            <AnchorPane prefHeight="73.0" prefWidth="99.0">
+                <Text fx:id="totalIncome" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rs 2300"
+                      textAlignment="CENTER" wrappingWidth="102.9271240234375">
+                    <font>
+                        <Font size="23.0"/>
+                    </font>
+                </Text>
+            </AnchorPane>
+        </HBox>
+    </VBox>
 
     <!-- Bar Chart -->
     <BarChart fx:id="barChart" layoutX="227.0" layoutY="40.0" prefHeight="302.0" prefWidth="354.0">
@@ -115,9 +124,4 @@
             <Label style="-fx-padding: 10px;" text="Sports day next Monday" />
         </HBox>
     </VBox>
-    <ToggleButton fx:id="toggleDataButton" layoutX="488.0" layoutY="313.0" onAction="#handleToggleData" style="-fx-background-color: #008CBA;" text="Switch Graph" textFill="WHITE">
-      <font>
-         <Font size="11.0" />
-      </font>
-   </ToggleButton>
 </AnchorPane>

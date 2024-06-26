@@ -79,7 +79,7 @@ public class TeacherDAO {
             pstmt.setString(1, teacher.getName());
             pstmt.setString(2, teacher.getGender());
             pstmt.setString(3, teacher.getSubject());
-            pstmt.setString(4, teacher.getClassLevel()); // Ensure this matches your actual column name
+            pstmt.setString(4, teacher.getClassLevel());
             pstmt.setString(5, teacher.getEmail());
             pstmt.setString(6, teacher.getPhone());
             pstmt.setInt(7, teacher.getId());

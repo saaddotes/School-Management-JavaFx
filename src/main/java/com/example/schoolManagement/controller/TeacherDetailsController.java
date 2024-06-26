@@ -3,6 +3,7 @@ package com.example.schoolManagement.controller;
 import com.example.schoolManagement.database.TeacherDAO;
 import com.example.schoolManagement.models.Teacher;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -25,8 +26,6 @@ public class TeacherDetailsController {
     @FXML
     private TextField teacherPhoneField;
     @FXML
-    private ImageView teacherImageView;
-    @FXML
     private Button editButton;
     @FXML
     private Button updateButton;
@@ -42,17 +41,14 @@ public class TeacherDetailsController {
         teacherClassField.setText(teacher.getClassLevel());
         teacherEmailField.setText(teacher.getEmail());
         teacherPhoneField.setText(teacher.getPhone());
-        // teacherImageView.setImage(new Image(teacher.getImagePath())); // Uncomment if image path is provided
 
         setFieldsEditable(false);
     }
 
     @FXML
     private void handleEditButtonAction() {
-        // Enable text fields for editing
         setFieldsEditable(true);
 
-        // Enable the Update button and disable the Edit button
         updateButton.setDisable(false);
         editButton.setDisable(true);
     }
@@ -77,6 +73,8 @@ public class TeacherDetailsController {
         // Enable the Edit button and disable the Update button
         editButton.setDisable(false);
         updateButton.setDisable(true);
+
+        showAlert("Successfully updated teacher");
     }
 
     private void setFieldsEditable(boolean editable) {
@@ -86,5 +84,13 @@ public class TeacherDetailsController {
         teacherClassField.setEditable(editable);
         teacherEmailField.setEditable(editable);
         teacherPhoneField.setEditable(editable);
+    }
+
+    private void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
