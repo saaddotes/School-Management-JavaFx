@@ -16,13 +16,19 @@ public class App extends Application {
         // Initialize database
         DatabaseConnection.createNewDatabase();
         DatabaseConnection.getConnection();
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/com/example/schoolManagement/Fxml/school.fxml"));
+
+
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/com/example/schoolManagement/Fxml/Main.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1000, 400);
         stage.setTitle("School Management");
+
+
         // Load and set the favicon
         stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/schoolManagement/icons/icon16.png"))));
         stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/schoolManagement/icons/icon32.png"))));
         stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/schoolManagement/icons/icon48.png"))));
+
+
         stage.setScene(scene);
         stage.show();
     }

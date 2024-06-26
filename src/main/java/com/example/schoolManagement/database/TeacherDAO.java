@@ -5,9 +5,14 @@ import com.example.schoolManagement.models.Teacher;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TeacherDAO {
+
+    private final String url = "jdbc:sqlite:school.db";
+
     public void addTeacher(Teacher teacher) {
         String query = "INSERT INTO teachers (id, name, gender, subject, classLevel, email, phone) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection();
@@ -64,7 +69,6 @@ public class TeacherDAO {
     }
 
 
-    private final String url = "jdbc:sqlite:school.db";
 
     public void updateTeacher(Teacher teacher) {
         String sql = "UPDATE teachers SET name = ?, gender = ?, subject = ?, classLevel = ?, email = ?, phone = ? WHERE id = ?";
@@ -84,5 +88,24 @@ public class TeacherDAO {
         } catch (SQLException e) {
             System.out.println(e.getMessage()+"This");
         }
+    }
+
+    public Map<String, Integer> getTeacherCountByClass() {
+        Map<String, Integer> teacherData = new HashMap<>();
+
+        try (Connection conn = DriverManager.getConnection(url);
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT classLevel, COUNT(*) AS count FROM teachers GROUP BY classLevel")) {
+
+            while (rs.next()) {
+                String classLevel = rs.getString("classLevel");
+                int count = rs.getInt("count");
+                teacherData.put(classLevel, count);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return teacherData;
     }
 }

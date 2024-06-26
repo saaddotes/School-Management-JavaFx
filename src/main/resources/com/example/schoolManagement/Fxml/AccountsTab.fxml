@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.schoolManagement.controller.AccountsController">
+    <TabPane layoutX="-3.0" layoutY="-3.0" prefHeight="370.0" prefWidth="1000.0" side="BOTTOM"
+             tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0"
+             AnchorPane.leftAnchor="-0.0" AnchorPane.rightAnchor="0.0"
+             AnchorPane.topAnchor="0.0">
+        <Tab disable="true" text="Fees Collection">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+                        prefWidth="200.0">
+                <HBox prefHeight="28.0" prefWidth="600.0"
+                      style="-fx-background-color: #eee;"/>
+                <TableView layoutY="28.0" prefHeight="285.0" prefWidth="603.0"
+                           AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                           AnchorPane.rightAnchor="197.0"
+                           AnchorPane.topAnchor="0.0">
+                    <columns>
+                        <TableColumn prefWidth="86.6666259765625"
+                                     text="Roll Number"/>
+                        <TableColumn prefWidth="100.6666259765625"
+                                     text="Student Name"/>
+                        <TableColumn prefWidth="75.0" text="Class"/>
+                        <TableColumn prefWidth="75.0" text="Section"/>
+                        <TableColumn prefWidth="70.00006103515625" text="Fees"/>
+                        <TableColumn prefWidth="91.99993896484375" text="Status"/>
+                        <TableColumn prefWidth="98.66668701171875" text="Action"/>
+                    </columns>
+                </TableView>
+                <Button layoutX="614.0" layoutY="118.0" mnemonicParsing="false"
+                        text="Theme"/>
+            </AnchorPane>
+        </Tab>
+        <Tab text="Add Fees">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+                        prefWidth="200.0">
+                <HBox alignment="CENTER_LEFT" layoutX="7.0" layoutY="14.0"
+                      prefHeight="64.0" prefWidth="915.0">
+                    <TextField alignment="TOP_LEFT" prefHeight="32.0"
+                               prefWidth="403.0" promptText="ID Number"/>
+                    <Button alignment="TOP_CENTER" mnemonicParsing="false"
+                            prefHeight="31.0" prefWidth="115.0"
+                            text=" Generate Voucher">
+                        <HBox.margin>
+                            <Insets left="10.0"/>
+                        </HBox.margin>
+                    </Button>
+                </HBox>
+                <HBox layoutX="5.0" layoutY="94.0" prefHeight="195.0"
+                      prefWidth="600.0" visible="false">
+                    <VBox prefHeight="195.0" prefWidth="178.0">
+                        <padding>
+                            <Insets left="20.0"/>
+                        </padding>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="Student Name :"
+                              wrappingWidth="201.9831027984619">
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                        </Text>
+                        <Text layoutX="10.0" layoutY="25.0"
+                              strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="Father Name :"
+                              wrappingWidth="201.9831027984619">
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                        </Text>
+                        <Text layoutX="10.0" layoutY="45.0"
+                              strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="Class"
+                              wrappingWidth="201.9831027984619">
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                        </Text>
+                        <Text layoutX="10.0" layoutY="65.0"
+                              strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="Section"
+                              wrappingWidth="201.9831027984619">
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                        </Text>
+                        <Text layoutX="10.0" layoutY="85.0"
+                              strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="Total Fees"
+                              wrappingWidth="201.9831027984619">
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                        </Text>
+                        <Text layoutX="10.0" layoutY="125.0"
+                              strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="Due Date"
+                              wrappingWidth="201.9831027984619">
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                        </Text>
+                        <Text layoutX="10.0" layoutY="105.0"
+                              strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="Status"
+                              wrappingWidth="201.9831027984619">
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                        </Text>
+                    </VBox>
+                    <VBox layoutX="10.0" layoutY="10.0" prefHeight="195.0"
+                          prefWidth="178.0">
+                        <padding>
+                            <Insets left="20.0"/>
+                        </padding>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="Saad Ali"
+                              wrappingWidth="201.9831027984619">
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                        </Text>
+                        <Text layoutX="10.0" layoutY="25.0"
+                              strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="Shahnawaz Soomro"
+                              wrappingWidth="201.9831027984619">
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                        </Text>
+                        <Text layoutX="10.0" layoutY="45.0"
+                              strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="10" wrappingWidth="201.9831027984619">
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                        </Text>
+                        <Text layoutX="10.0" layoutY="65.0"
+                              strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="C" wrappingWidth="201.9831027984619">
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                        </Text>
+                        <Text layoutX="10.0" layoutY="85.0"
+                              strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="Rs 15000"
+                              wrappingWidth="201.9831027984619">
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                        </Text>
+                        <Text layoutX="10.0" layoutY="125.0"
+                              strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="23 June, 2024"
+                              wrappingWidth="201.9831027984619">
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                        </Text>
+                        <Text layoutX="10.0" layoutY="105.0"
+                              strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="Not Paid"
+                              wrappingWidth="201.9831027984619">
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                        </Text>
+                    </VBox>
+                    <VBox alignment="BOTTOM_CENTER" prefHeight="195.0"
+                          prefWidth="151.0">
+                        <Button mnemonicParsing="false" prefHeight="31.0"
+                                prefWidth="147.0" text="Pay"/>
+                        <Button layoutX="10.0" layoutY="10.0"
+                                mnemonicParsing="false" prefHeight="31.0"
+                                prefWidth="147.0" text="Download">
+                            <VBox.margin>
+                                <Insets top="10.0"/>
+                            </VBox.margin>
+                        </Button>
+                    </VBox>
+                </HBox>
+            </AnchorPane>
+        </Tab>
+    </TabPane>
+
+</AnchorPane>

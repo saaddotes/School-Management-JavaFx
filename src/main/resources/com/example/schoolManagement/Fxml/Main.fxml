@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="450.0"
+            prefWidth="975.0" xmlns="http://javafx.com/javafx/21"
+            fx:controller="com.example.schoolManagement.controller.MainController">
+    <effect>
+        <DropShadow/>
+    </effect>
+    <TabPane maxWidth="975.0" minWidth="975.0" prefHeight="400.0" prefWidth="975.0" tabClosingPolicy="UNAVAILABLE"
+             tabMaxHeight="400.0" tabMaxWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+             AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <Tab text="Dashboard">
+            <AnchorPane fx:id="dashboardTab"/>
+        </Tab>
+
+        <Tab text="Teachers">
+            <AnchorPane fx:id="teachersTab"/>
+        </Tab>
+
+        <Tab text="Students">
+            <AnchorPane fx:id="studentsTab"/>
+        </Tab>
+
+        <Tab text="Accounts">
+            <AnchorPane fx:id="accountsTab"/>
+        </Tab>
+
+    </TabPane>
+</AnchorPane>
+
+

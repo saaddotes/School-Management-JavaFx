@@ -3,7 +3,9 @@ package com.example.schoolManagement.database;
 import com.example.schoolManagement.models.Student;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class StudentDAO {
 
@@ -95,5 +97,24 @@ public class StudentDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public Map<String, Integer> getStudentCountByClass() {
+        Map<String, Integer> classData = new HashMap<>();
+
+        try (Connection conn = DriverManager.getConnection(url);
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT classLevel, COUNT(*) AS count FROM students GROUP BY classLevel")) {
+
+            while (rs.next()) {
+                String classLevel = rs.getString("classLevel");
+                int count = rs.getInt("count");
+                classData.put(classLevel, count);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return classData;
     }
 }

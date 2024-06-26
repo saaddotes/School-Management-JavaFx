@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.schoolManagement.controller.StudentsController">
+    <TabPane layoutY="-1.0" prefHeight="370.0" prefWidth="1000.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-1.0">
+        <Tab text="All Students">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <TableView fx:id="studentTableView" layoutX="471.3333333333333" layoutY="-1.0" maxHeight="400.0" maxWidth="700.0" minHeight="392.0" minWidth="700.0" prefHeight="392.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="178.0" AnchorPane.topAnchor="0.0">
+                    <columns>
+                        <TableColumn fx:id="rollNumberColumn" prefWidth="81.33331298828125" text="Roll Number" />
+                        <TableColumn fx:id="studentNameColumn" prefWidth="114.66665649414062" text="Name" />
+                        <TableColumn fx:id="fatherNameColumn" prefWidth="88.00001525878906" text="Father Name" />
+                        <TableColumn fx:id="studentGenderColumn" prefWidth="44.66668701171875" text="Gender" />
+                        <TableColumn fx:id="studentClassColumn" prefWidth="60.000030517578125" text="Class" />
+                        <TableColumn fx:id="studentSectionColumn" prefWidth="54.66668701171875" text="Section" />
+                        <TableColumn fx:id="studentEmailColumn" prefWidth="105.33334350585938" text="Email Address" />
+                        <TableColumn fx:id="studentPhoneColumn" prefWidth="82.66668701171875" text="Phone" />
+                        <TableColumn fx:id="studentFeesColumn" prefWidth="75.0" text="Fees" />
+                        <TableColumn fx:id="studentFeesStatusColumn" prefWidth="86.0" text="Status" />
+                    </columns>
+                </TableView>
+                <VBox alignment="CENTER_RIGHT" layoutX="796.0" layoutY="-2.0" prefHeight="392.0" prefWidth="179.0" spacing="10.0" style="-fx-background-color: #eee;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="796.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <padding>
+                        <Insets right="20.0" />
+                    </padding>
+                    <Button fx:id="studentMoreInfoBtn" disable="true" mnemonicParsing="false" onAction="#handleMoreInfoStudent" prefHeight="31.0" prefWidth="132.0" style="-fx-background-color: #008CBA;" text="More Info" textFill="WHITE" />
+                    <Button fx:id="studentDeleteBtn" disable="true" mnemonicParsing="false" onMouseClicked="#handleDeleteButtonAction" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: #f44336;" text="Delete" textFill="WHITE" />
+                </VBox>
+            </AnchorPane>
+        </Tab>
+        <Tab text="Admit Student">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <VBox alignment="TOP_RIGHT" prefHeight="391.0" prefWidth="975.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <opaqueInsets>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </opaqueInsets>
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                    <Text fx:id="studentWarningText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="*Please Complete All Fields" visible="false" />
+                    <HBox prefHeight="37.0" prefWidth="955.0" spacing="10.0">
+                        <TextField fx:id="studentRollField" prefWidth="200.0" promptText="Roll Number" />
+                        <TextField fx:id="studentNameField" prefWidth="200.0" promptText="Student Name" />
+                        <TextField fx:id="fatherNameField" prefWidth="200.0" promptText="Father Name" />
+                    </HBox>
+                    <HBox prefHeight="40.0" prefWidth="955.0" spacing="10.0">
+
+                        <SplitMenuButton fx:id="studentGenderMenu" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Gender">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#setStudentGender" text="Male" />
+                                <MenuItem mnemonicParsing="false" onAction="#setStudentGender" text="Female" />
+                            </items>
+                        </SplitMenuButton>
+
+
+                        <SplitMenuButton fx:id="studentClassMenu" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Class">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#setStudentClass" text="1st" />
+                                <MenuItem mnemonicParsing="false" onAction="#setStudentClass" text="2nd" />
+                                <MenuItem mnemonicParsing="false" onAction="#setStudentClass" text="3rd" />
+                                <MenuItem mnemonicParsing="false" onAction="#setStudentClass" text="4th" />
+                        <MenuItem mnemonicParsing="false" onAction="#setStudentClass" text="5th" />
+                        <MenuItem mnemonicParsing="false" onAction="#setStudentClass" text="6th" />
+                        <MenuItem mnemonicParsing="false" onAction="#setStudentClass" text="7th" />
+                        <MenuItem mnemonicParsing="false" onAction="#setStudentClass" text="8th" />
+                        <MenuItem mnemonicParsing="false" onAction="#setStudentClass" text="9th" />
+                        <MenuItem mnemonicParsing="false" onAction="#setStudentClass" text="10th" />
+                            </items>
+                        </SplitMenuButton>
+
+
+                        <SplitMenuButton fx:id="studentSectionMenu" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Section">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#setStudentSection" text="A" />
+                                <MenuItem mnemonicParsing="false" onAction="#setStudentSection" text="B" />
+                                <MenuItem mnemonicParsing="false" onAction="#setStudentSection" text="C" />
+                                <MenuItem mnemonicParsing="false" onAction="#setStudentSection" text="D" />
+                            </items>
+                        </SplitMenuButton>
+
+
+                    </HBox>
+                    <HBox layoutX="20.0" layoutY="20.0" prefHeight="41.0" prefWidth="955.0" spacing="10.0">
+
+                        <TextField fx:id="studentEmailField" prefWidth="200.0" promptText="Email Address" />
+
+                        <TextField fx:id="studentPhoneField" prefWidth="200.0" promptText="Phone Number" />
+
+
+                        <TextField fx:id="studentDobField" prefWidth="200.0" promptText="Date Of Birth" />
+
+                    </HBox>
+                    <HBox prefHeight="43.0" prefWidth="955.0" spacing="10.0">
+
+                        <TextField alignment="TOP_LEFT" disable="true" prefWidth="200.0" promptText="3000" />
+                        <TextField alignment="TOP_LEFT" disable="true" layoutX="360.0" layoutY="10.0" prefWidth="200.0" promptText="Unpaid" />
+                    </HBox>
+                    <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                        <Button contentDisplay="RIGHT" mnemonicParsing="false" prefWidth="100.0" style="-fx-background-color: #aaa;" text="Reset">
+                            <font>
+                                <Font />
+                            </font>
+                        </Button>
+                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#addStudent" prefWidth="100.0" style="-fx-background-color: #04AA6D;" text="Save" textFill="WHITE">
+                            <font>
+                                <Font />
+                            </font>
+                        </Button>
+                    </HBox>
+                </VBox>
+            </AnchorPane>
+        </Tab>
+    </TabPane>
+</AnchorPane>
